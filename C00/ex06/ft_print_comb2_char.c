@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 11:45:31 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/15 14:15:25 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/02/15 17:41:33 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void	ft_print_comb2(void)
 			dig3++;
 			dig4 = '0';
 		}
+	/*	else if (dig1 == '9' && dig2 != '9')
+		{
+			dig2++;
+			dig3 = '9';
+			dig4 = dig2 + 1;
+		}*/
 		else if (dig1 < dig3 && dig2 != '9') //dig4 = 9 y dig3 = 9
 		{
 			dig2++;
