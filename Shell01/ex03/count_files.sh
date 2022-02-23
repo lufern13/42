@@ -1,2 +1,2 @@
 #!/bin/sh
-find . | wc -l | awk "{$1=$1}"
+find . | wc -l | awk '{print$1}'

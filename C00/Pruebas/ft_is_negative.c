@@ -6,7 +6,7 @@
 /*   By: lucifern <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 16:08:54 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/21 16:53:42 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/02/15 11:42:12 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_is_negative(int n)
 {
 	char	sign;
 
-	if (n >= 0)
+	if (n > 0)
 		sign = 'P';
 	else
 		sign = 'N';

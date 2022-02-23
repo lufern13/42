@@ -1,24 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_negative.c                                   :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucifern <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/14 16:08:54 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/21 16:53:42 by lucifern         ###   ########.fr       */
+/*   Created: 2022/02/22 19:18:47 by lucifern          #+#    #+#             */
+/*   Updated: 2022/02/22 19:29:43 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_is_negative(int n)
+int	ft_strlen(char *str)
 {
-	char	sign;
+	int	len;
 
-	if (n >= 0)
-		sign = 'P';
-	else
-		sign = 'N';
-	write(1, &sign, sizeof(sign));
+	len = 0;
+	while (*(str + len) != '\0')
+		len++;
+	return (len - 1);
 }

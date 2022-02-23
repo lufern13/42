@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/11 11:28:26 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/21 15:59:55 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/02/12 13:32:55 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int	main(void)
 {
+	printf("hola\n");
+	return 0;
+	/*
 	int		a;
 	char	c;
 	float	f;
@@ -27,8 +30,7 @@ int	main(void)
 	printf("CHAR %lu %d %c\n", sizeof(c), c, c);
 	printf("INT %lu\n", sizeof(a));
 	printf("FLOAT %lu %f\n", sizeof(f), f);
-	printf("DOUBLEdhfljsdlkgjñaljalsñsk %lu %f\n", sizeof(d), d);
-	return (0);
+	printf("DOUBLEdhfljsdlkgjñaljalsñsk %lu %f\n", sizeof(d), d);*/
 }
 
 /* VARIABLES:

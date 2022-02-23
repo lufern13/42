@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_negative.c                                   :+:      :+:    :+:   */
+/*   ft_rev_int_tab.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucifern <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/14 16:08:54 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/21 16:53:42 by lucifern         ###   ########.fr       */
+/*   Created: 2022/02/22 19:30:05 by lucifern          #+#    #+#             */
+/*   Updated: 2022/02/23 11:13:13 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	ft_is_negative(int n)
+void	ft_rev_int_tab(int *tab, int size)
 {
-	char	sign;
+	int	rev_tab[10];
+	int	i;
 
-	if (n >= 0)
-		sign = 'P';
-	else
-		sign = 'N';
-	write(1, &sign, sizeof(sign));
+	i = 0;
+	while (i < size)
+	{
+		rev_tab[size - i - 1] = *(tab + i);
+		i++;
+	}
+	i = 0;
+	while (i < size)
+	{
+		*(tab + i) = rev_tab[i];
+		i++;
+	}
 }

@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_negative.c                                   :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucifern <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/14 16:08:54 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/21 16:53:42 by lucifern         ###   ########.fr       */
+/*   Created: 2022/02/13 15:56:58 by lucifern          #+#    #+#             */
+/*   Updated: 2022/02/13 18:40:56 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+void	rush(int x, int y);
 
-void	ft_is_negative(int n)
+int	main(void)
 {
-	char	sign;
-
-	if (n >= 0)
-		sign = 'P';
-	else
-		sign = 'N';
-	write(1, &sign, sizeof(sign));
+	rush(2, 5);
+	return (0);
 }

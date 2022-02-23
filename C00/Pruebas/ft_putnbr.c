@@ -6,16 +6,16 @@
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/15 17:43:10 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/21 17:51:16 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/02/15 19:42:22 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	put_long_int(long int n)
+void	ft_putnbr(int n)
 {
 	char	cifra;
-
+    
 	if (n < 0)
 	{
 		write(1, "-", 1);
@@ -28,15 +28,16 @@ void	put_long_int(long int n)
 	}
 	else
 	{
-		put_long_int(n / 10);
-		put_long_int(n % 10);
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
 	}
 }
 
-void	ft_putnbr(int n)
+int	main(void)
 {
-	long int	number;
+	int n;
 
-	number = n;
-	put_long_int(number);
+	n = -2147483648;
+	ft_putnbr(n);
+	return (0);
 }

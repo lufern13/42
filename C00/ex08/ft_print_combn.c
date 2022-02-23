@@ -6,16 +6,13 @@
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/16 14:31:05 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/16 14:48:58 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/02/21 16:06:28 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_print_combn(int n)
-{
-
-}
+void	ft_print_combn(int n);
 
 int	main(void)
 {

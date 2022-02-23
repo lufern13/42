@@ -1,42 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_comb2_int.c                               :+:      :+:    :+:   */
+/*   ft_sort_int_tab.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 17:43:10 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/21 17:51:16 by lucifern         ###   ########.fr       */
+/*   Created: 2022/02/22 20:26:51 by lucifern          #+#    #+#             */
+/*   Updated: 2022/02/23 15:58:20 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-
-void	put_long_int(long int n)
+//BUBBLESORT
+void	ft_swap(int *a, int *b)
 {
-	char	cifra;
+	int	valor;
 
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		n = n * (-1);
-	}
-	if (n < 10)
-	{
-		cifra = n + '0';
-		write(1, &cifra, 1);
-	}
-	else
-	{
-		put_long_int(n / 10);
-		put_long_int(n % 10);
-	}
+	valor = *a;
+	*a = *b;
+	*b = valor;
 }
 
-void	ft_putnbr(int n)
+void	ft_sort_int_tab(int *tab, int size)
 {
-	long int	number;
+	int	i;
+	int	k;
 
-	number = n;
-	put_long_int(number);
+	i = 0;
+	k = 0;
+	while (i <= size - k - 1)
+	{
+		if (*(tab + i) > *(tab + i + 1))
+		{
+			ft_swap((tab + i), (tab + i + 1));
+		}
+		i++;
+		if (i == size - k - 1)
+		{
+			i = 0;
+			k++;
+		}
+	}
 }

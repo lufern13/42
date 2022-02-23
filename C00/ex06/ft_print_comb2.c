@@ -5,38 +5,48 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/15 17:43:10 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/21 17:51:16 by lucifern         ###   ########.fr       */
+/*   Created: 2022/02/15 19:42:29 by lucifern          #+#    #+#             */
+/*   Updated: 2022/02/21 16:57:19 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	put_long_int(long int n)
+void	write_number(int num1)
 {
-	char	cifra;
+	char	unidad1;
+	char	decena1;
 
-	if (n < 0)
-	{
-		write(1, "-", 1);
-		n = n * (-1);
-	}
-	if (n < 10)
-	{
-		cifra = n + '0';
-		write(1, &cifra, 1);
-	}
-	else
-	{
-		put_long_int(n / 10);
-		put_long_int(n % 10);
-	}
+	decena1 = num1 / 10 + '0';
+	unidad1 = num1 % 10 + '0';
+	write(1, &decena1, 1);
+	write(1, &unidad1, 1);
 }
 
-void	ft_putnbr(int n)
+void	ft_print_comb2(void)
 {
-	long int	number;
+	int	num1;
+	int	num2;
 
-	number = n;
-	put_long_int(number);
+	num1 = 0;
+	num2 = 1;
+	while (num1 < 100)
+	{
+		write_number(num1);
+		write(1, " ", 1);
+		write_number(num2);
+		if (num1 != 98 || num2 != 99)
+		{
+			write(1, ", ", 2);
+		}
+		if (num2 < 99)
+			num2 = num2 + 1;
+		else if (num1 < 98)
+		{
+			num1 = num1 + 1;
+			num2 = num1 + 1;
+		}
+		else
+			num1 = 100;
+	}
 }

@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_negative.c                                   :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/14 16:08:54 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/21 16:53:42 by lucifern         ###   ########.fr       */
+/*   Created: 2022/02/11 13:38:57 by lucifern          #+#    #+#             */
+/*   Updated: 2022/02/13 18:22:29 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	ft_is_negative(int n)
+void    ft_putchar(char c)
 {
-	char	sign;
-
-	if (n >= 0)
-		sign = 'P';
-	else
-		sign = 'N';
-	write(1, &sign, sizeof(sign));
+	write(1, &c, 1);
 }
