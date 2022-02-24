@@ -52,8 +52,6 @@ int	main(void)
 	tab[2] = -1;
 	tab[3] = 9;
 	tab[4] = -9;
-	if (1 > -1)
-		write(1, "1 mayor que -1\n", 15);
 	ft_sort_int_tab(tab, size);
 	imprime_tab(tab, size);
 	return (0);

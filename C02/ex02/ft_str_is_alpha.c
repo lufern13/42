@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 19:18:47 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/22 19:29:43 by lucifern         ###   ########.fr       */
+/*   Created: 2022/02/24 12:51:29 by lucifern          #+#    #+#             */
+/*   Updated: 2022/02/24 13:49:35 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_strlen(char *str)
+int	ft_str_is_alpha(char *str)
 {
-	int	len;
+	int	i;
+	int	sol;
 
-	len = 0;
-	while (*(str + len) != '\0')
-		len++;
-	return (len - 1);
-}
-int    main(void)
-{
-    char    str[4];
-
-    str[0] = 'h';
-    str[1] = 'o';
-    str[2] = 'l';
-    str[3] = 'a';
-    printf("%d\n", ft_strlen(str));
-    return (0);
+	i = 0;
+	if (str[0] == '\0')
+		sol = 1;
+	else
+		sol = 0;
+	while (*(str + i) != '\0' && sol == 0)
+	{
+		if (str[i] < '0' || str[i] > 'z')
+			sol = 1;
+		else if (str[i] > '9' && str[i] < 'A')
+			sol = 1;
+		else if (str[i] > 'Z' && str[i] < 'a')
+			sol = 1;
+		i++;
+	}
+	return (sol);
 }

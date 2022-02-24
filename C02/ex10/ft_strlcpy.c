@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 19:18:47 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/22 19:29:43 by lucifern         ###   ########.fr       */
+/*   Created: 2022/02/24 19:49:08 by lucifern          #+#    #+#             */
+/*   Updated: 2022/02/24 20:21:36 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_strlen(char *str)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
-	int	len;
+	unsigned int	i;
+	int				len;
 
+	i = 0;
 	len = 0;
-	while (*(str + len) != '\0')
+	while (i < size - 1)
+	{
+		*(dest + i) = *(src + i);
 		len++;
+		i++;
+	}
+	while (*(dest + i) != '\0')
+	{
+		*(dest + i) = '\0';
+		if (*(dest + i) != '\0')
+			len++;
+		i++;
+	}
+	while (*(src + i) != '\0')
+	{
+		len++;
+		i++;
+	}
 	return (len - 1);
-}
-int    main(void)
-{
-    char    str[4];
-
-    str[0] = 'h';
-    str[1] = 'o';
-    str[2] = 'l';
-    str[3] = 'a';
-    printf("%d\n", ft_strlen(str));
-    return (0);
 }

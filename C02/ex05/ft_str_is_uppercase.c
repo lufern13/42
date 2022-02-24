@@ -1,34 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_str_is_uppercase.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/22 19:18:47 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/22 19:29:43 by lucifern         ###   ########.fr       */
+/*   Created: 2022/02/24 13:58:20 by lucifern          #+#    #+#             */
+/*   Updated: 2022/02/24 14:06:21 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_strlen(char *str)
+int	ft_str_is_uppercase(char *str)
 {
-	int	len;
+	int	i;
+	int	sol;
 
-	len = 0;
-	while (*(str + len) != '\0')
-		len++;
-	return (len - 1);
-}
-int    main(void)
-{
-    char    str[4];
-
-    str[0] = 'h';
-    str[1] = 'o';
-    str[2] = 'l';
-    str[3] = 'a';
-    printf("%d\n", ft_strlen(str));
-    return (0);
+	if (str[0] == '\0')
+		sol = 1;
+	else
+		sol = 0;
+	i = 0;
+	while (*(str + i) != '\0' && sol == 0)
+	{
+		if (str[i] < 65 || str[i] > 90)
+			sol = 1;
+		i++;
+	}
+	return (sol);
 }
