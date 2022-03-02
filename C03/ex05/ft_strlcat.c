@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strstr.c                                        :+:      :+:    :+:   */
+/*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 19:48:50 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/02 20:23:26 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/02 12:12:37 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/02 20:27:21 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+unsigned int	ft_strlen(char *str)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -20,22 +20,26 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_strstr(char *str, char *to_find)
+unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
-	int	i;
-	int	j;
-	int	len;
+	unsigned int	i;
+	unsigned int	k;
 
+	if (size < 1)
+		return (ft_strlen(src) + size);
 	i = 0;
-	len = ft_strlen(to_find);
-	while (str[i] != '\0')
-	{
-		j = 0;
-		while (str[i + j] == to_find[j] && to_find[j] != '\0')
-			j++;
-		if (j == len)
-			return (str + i);
+	while (dest[i] != '\0')
 		i++;
+	k = 0;
+	while (src[k] != '\0' && k < size - 1)
+	{
+		dest[i] = src[k];
+		i++;
+		k++;
 	}
-	return (0);
+	dest[i] = '\0';
+	if (size < ft_strlen(dest))
+		return (ft_strlen(src) + size);
+	else
+		return (ft_strlen(dest) + ft_strlen(src));
 }

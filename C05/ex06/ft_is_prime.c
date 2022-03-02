@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_is_prime.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 18:56:23 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/02 20:18:56 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/02 21:50:56 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/02 22:04:24 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
+int	ft_is_prime(int nb)
 {
-	int				i;
-	unsigned int	j;
+	int	i;
+	int	sol;
 
-	i = 0;
-	while (dest[i] != '\0')
-		i++;
-	j = 0;
-	while (j < nb && src[j] != '\0')
+	i = 2;
+	sol = 1;
+	while (i < nb && sol == 1)
 	{
-		dest[i + j] = src[j];
-		j++;
+		if (nb % i == 0)
+			sol = 0;
+		i++;
 	}
-	dest[i + j] = '\0';
-	return (dest);
+	if (nb == 0 || nb == 1)
+		sol = 0;
+	return (sol);
 }

@@ -1,29 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 18:56:23 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/02 20:18:56 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/02 22:04:46 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/02 22:10:43 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
+int	ft_is_prime(int nb)
 {
-	int				i;
-	unsigned int	j;
+	int	i;
+	int	sol;
 
-	i = 0;
-	while (dest[i] != '\0')
-		i++;
-	j = 0;
-	while (j < nb && src[j] != '\0')
+	i = 2;
+	sol = 1;
+	while (i < nb && sol == 1)
 	{
-		dest[i + j] = src[j];
-		j++;
+		if (nb % i == 0)
+			sol = 0;
+		i++;
 	}
-	dest[i + j] = '\0';
-	return (dest);
+	if (nb == 0 || nb == 1)
+		sol = 0;
+	return (sol);
+}
+
+int	ft_find_next_prime(int nb)
+{
+	int	i;
+	int	sol;
+
+	i = nb;
+	sol = 0;
+	while (sol == 0)
+	{
+		if (ft_is_prime(i) == 1)
+			sol = i;
+		i++;
+	}
+	return (sol);
 }

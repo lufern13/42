@@ -6,22 +6,20 @@
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 18:25:49 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/01 18:35:02 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/02 20:01:16 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
-	int	sol;
 
 	i = 0;
-	sol = 0;
-	while (s1[i] != '\0' && sol == 0)
+	while (s1[i] != '\0' && s2[i] != '\0')
 	{
 		if (s1[i] != s2[i])
-			sol = s1[i] - s2[i];
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	return (sol);
+	return (0);
 }

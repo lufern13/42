@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncat.c                                       :+:      :+:    :+:   */
+/*   ft_fibonacci.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/01 18:56:23 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/02 20:18:56 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/02 18:29:38 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/02 19:01:29 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncat(char *dest, char *src, unsigned int nb)
+int	ft_fibonacci(int index)
 {
-	int				i;
-	unsigned int	j;
+	int	sol;
 
-	i = 0;
-	while (dest[i] != '\0')
-		i++;
-	j = 0;
-	while (j < nb && src[j] != '\0')
-	{
-		dest[i + j] = src[j];
-		j++;
-	}
-	dest[i + j] = '\0';
-	return (dest);
+	if (index < 0)
+		sol = -1;
+	else if (index == 0)
+		sol = 0;
+	else if (index == 1 || index == 2)
+		sol = 1;
+	else if (index == 3)
+		sol = 2;
+	else
+		sol = ft_fibonacci(index - 1) + ft_fibonacci(index - 2);
+	return (sol);
 }

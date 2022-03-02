@@ -36,7 +36,7 @@ void	imprime_tab(int *tab, int size)
 	i = 0;
 	while (i < size)
 	{
-		printf("%d ", *(tab + i));
+		printf("%d ", tab[i]);
 		i++;
 	}
 }
