@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/24 12:51:29 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/28 20:56:30 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/01 18:25:49 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/01 18:35:02 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_alpha(char *str)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 	int	sol;
 
 	i = 0;
-	sol = 1;
-	while (*(str + i) != '\0' && sol == 1)
+	sol = 0;
+	while (s1[i] != '\0' && sol == 0)
 	{
-		if (str[i] < 'A' || str[i] > 'z')
-			sol = 0;
-		else if (str[i] > 'Z' && str[i] < 'a')
-			sol = 0;
+		if (s1[i] != s2[i])
+			sol = s1[i] - s2[i];
 		i++;
 	}
 	return (sol);

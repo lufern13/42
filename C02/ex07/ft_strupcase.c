@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strupcase.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
+/*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 14:14:07 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/24 16:37:06 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/02/28 19:41:11 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_struppercase(char *str)
+char	*ft_strupcase(char *str)
 {
 	int	i;
 

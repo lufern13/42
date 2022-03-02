@@ -1,14 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/24 19:49:08 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/28 20:49:22 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/01 19:48:50 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/01 21:06:27 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 int	ft_strlen(char *str)
 {
@@ -19,23 +20,25 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
-
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+#include <stdio.h>
+char *ft_strstr(char *str, char *to_find)
 {
-	unsigned int	i;
-	int				len;
+	int	i;
+	int	j;
+	int	len;
+	int	sol;
 
 	i = 0;
-	len = ft_strlen(src);
-	while (i < size - 1)
+	j = 0;
+	sol = 0;
+	len = ft_strlen(to_find);
+	while (str[i] != '\0' && sol == 0)
 	{
-		*(dest + i) = *(src + i);
+		if (str[i] == to_find[j])
+		{
+			while (j < len && 
+		}
 		i++;
 	}
-	while (*(dest + i) != '\0')
-	{
-		*(dest + i) = '\0';
-		i++;
-	}
-	return (len);
+	return (sol);
 }

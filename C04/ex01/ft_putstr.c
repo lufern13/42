@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/24 12:51:29 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/28 20:56:30 by lucifern         ###   ########.fr       */
+/*   Created: 2022/02/25 11:57:05 by lucifern          #+#    #+#             */
+/*   Updated: 2022/02/25 12:06:35 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_alpha(char *str)
+#include <unistd.h>
+
+void	ft_putstr(char *str)
 {
 	int	i;
-	int	sol;
 
 	i = 0;
-	sol = 1;
-	while (*(str + i) != '\0' && sol == 1)
+	while (*(str + i) != '\0')
 	{
-		if (str[i] < 'A' || str[i] > 'z')
-			sol = 0;
-		else if (str[i] > 'Z' && str[i] < 'a')
-			sol = 0;
+		write(1, (str + i), 1);
 		i++;
 	}
-	return (sol);
 }

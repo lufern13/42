@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/24 12:51:29 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/28 20:56:30 by lucifern         ###   ########.fr       */
+/*   Created: 2022/02/25 11:21:55 by lucifern          #+#    #+#             */
+/*   Updated: 2022/02/25 11:56:10 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_alpha(char *str)
+int	ft_strlen(char *str)
 {
-	int	i;
-	int	sol;
+	int	len;
 
-	i = 0;
-	sol = 1;
-	while (*(str + i) != '\0' && sol == 1)
-	{
-		if (str[i] < 'A' || str[i] > 'z')
-			sol = 0;
-		else if (str[i] > 'Z' && str[i] < 'a')
-			sol = 0;
-		i++;
-	}
-	return (sol);
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }

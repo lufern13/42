@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_alpha.c                                  :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/24 12:51:29 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/28 20:56:30 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/01 18:42:28 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/01 18:55:33 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_str_is_alpha(char *str)
+char	*ft_strcat(char *dest, char *src)
 {
 	int	i;
-	int	sol;
+	int	j;
 
 	i = 0;
-	sol = 1;
-	while (*(str + i) != '\0' && sol == 1)
-	{
-		if (str[i] < 'A' || str[i] > 'z')
-			sol = 0;
-		else if (str[i] > 'Z' && str[i] < 'a')
-			sol = 0;
+	while (dest[i] != '\0')
 		i++;
+	j = 0;
+	while (src[j] != '\0')
+	{
+		dest[i + j] = src[j];
+		j++;
 	}
-	return (sol);
+	dest[i + j] = '\0';
+	return (dest);
 }

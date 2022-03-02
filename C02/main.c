@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/23 16:24:39 by lucifern          #+#    #+#             */
-/*   Updated: 2022/02/24 20:51:54 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/02/28 15:26:55 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ char	*ft_strcapitalize(char *str);
 
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
 
+void	ft_putstr_non_printable(char *str);
+
+//EJERCICIO 11
+
+int	main(void)
+{
+	char	str[] = "Coucou\vtu vas bien ?";
+
+	ft_putstr_non_printable(str);
+	return (0);
+}
+
 //EJERCICIO 10
 /*
 int	main(void)
@@ -45,6 +57,7 @@ int	main(void)
 	
 	size = 3;
 	printf("%lu %s", strlcpy(dest, src, size), dest);
+	//printf("%u %s", ft_strlcpy(dest, src, size), dest);
 	return (0);
 }
 */
