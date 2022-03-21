@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 19:02:05 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/02 21:50:12 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/02 22:36:57 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_sqrt(int nb)
 
 	i = 1;
 	sol = 0;
-	while (i <= (nb / 2) && sol == 0)
+	while (i <= 46340 && sol == 0)
 	{
 		if (cuad(i) == nb)
 			sol = i;

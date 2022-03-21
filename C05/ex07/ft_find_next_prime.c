@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 22:04:46 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/02 22:10:43 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/02 22:50:29 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_find_next_prime(int nb)
 
 	i = nb;
 	sol = 0;
-	while (sol == 0)
+	while (sol == 0 && i <= 2147483647)
 	{
 		if (ft_is_prime(i) == 1)
 			sol = i;

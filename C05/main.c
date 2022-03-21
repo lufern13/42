@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/02 14:39:56 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/02 22:10:38 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/02 23:40:47 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_find_next_prime(int nb);
 
 int	main(void)
 {
-	printf("%d", ft_find_next_prime(20));
+	printf("%d", ft_find_next_prime(21));
 	return (0);
 }
 
@@ -40,7 +40,7 @@ int	main(void)
 /*
 int	main(void)
 {
-	printf("%d", ft_is_prime(13));
+	printf("%d", ft_is_prime(2147483647));
 	return (0);
 }
 */
@@ -48,7 +48,7 @@ int	main(void)
 /*
 int	main(void)
 {
-	printf("%d", ft_sqrt(9));
+	printf("%d", ft_sqrt(2147483646));
 	return (0);
 }
 */
@@ -88,7 +88,7 @@ int	main(void)
 /*
 int	main(void)
 {
-	printf("%d", ft_iterative_factorial('*'));
+	printf("%d", ft_iterative_factorial(0));
 	return (0);
 }
 */
