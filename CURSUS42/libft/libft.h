@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 12:10:53 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/22 21:27:16 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/22 21:29:12 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_isprint(int c);
 size_t	ft_strlen(char *str);
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
-//ft_memcpy
+void	*memcpy(void *dest, void *src, size_t n);//FALTA PROBAR
 //ft_memmove
 size_t	ft_strlcpy(char *dest, char *src, size_t size);
 size_t	ft_strlcat(char *dest, char *src, size_t size);
