@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 13:37:06 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/22 18:33:29 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/22 19:19:29 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/22 21:25:58 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 
-size_t	ft_strlen(char *str)
+void	*memcpy(void *dest, void *src, size_t n)
 {
+	char	*destchar;
+	char	*srcchar;
 	size_t	i;
 
+	destchar = (char *)dest;
+	srcchar = (char *)src;
 	i = 0;
-	while (str[i] != '\0')
+	while (i < n)
+	{
+		destchar[i] = srcchar[i];
 		i++;
-	return (i);
+	}
+	return (dest);
 }
-/*
+
 int	main(void)
 {
-	printf("%zu", ft_strlen("hola que"));
-	return (0);
+	
 }
-*/

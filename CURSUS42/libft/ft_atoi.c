@@ -6,19 +6,11 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:52:40 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/21 14:07:06 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/22 12:42:36 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isdigit(int c)
-{
-	int	sol;
-
-	sol = 0;
-	if (c >= '0' && c <= '9')
-		sol = 1;
-	return (sol);
-}
+#include <libft.h>
 
 int	ft_atoi(char *str)
 {
