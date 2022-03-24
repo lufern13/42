@@ -6,17 +6,31 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:52:40 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/22 12:42:36 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/24 12:13:46 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+int	ft_isdigit(int c);
+
+int	process(char *str, int i, int neg, long int sol)
+{
+	while (ft_isdigit(str[i]))
+	{
+		sol = (sol * 10) + (str[i] - '0');
+		if (sol * neg < -2147483648)
+			return (0);
+		else if (sol * neg > 2147483647)
+			return (-1);
+		i++;
+	}
+	return (sol);
+}
 
 int	ft_atoi(char *str)
 {
-	int	i;
-	int	neg;
-	int	sol;
+	int			i;
+	int			neg;
+	long int	sol;
 
 	i = 0;
 	neg = 1;
@@ -31,11 +45,7 @@ int	ft_atoi(char *str)
 	}
 	else if (str[i] == '+')
 		i++;
-	while (ft_isdigit(str[i]))
-	{
-		sol = (sol * 10) + (str[i] - '0');
-		i++;
-	}
+	sol = process(str, i, neg, sol);
 	return (sol * neg);
 }
 /*
@@ -43,9 +53,8 @@ int	ft_atoi(char *str)
 #include <stdlib.h>
 int	main(void)
 {
-	char	*s = "    -  234*5";
+	char	*s = "-2147483649999";
 
 	printf("%d  %d", ft_atoi(s), atoi(s));
 	return (0);
-}
-*/
+}*/

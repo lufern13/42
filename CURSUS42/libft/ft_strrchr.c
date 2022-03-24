@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 13:17:10 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/24 10:28:36 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/24 13:48:16 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/24 13:51:34 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <libft.h>
 #include <stdio.h>
 
-void	*ft_memset(void *b, int c, size_t len)
-{
-	size_t	i;
-	char	*str;
+size_t	ft_strlen(char *str);
 
-	i = 0;
-	str = (char *)b;
-	while (i < len)
+char	*ft_strrchr(char *s, int c)
+{
+	int	i;
+
+	i = (int)ft_strlen(s) - 1;
+	while (i >= 0)
 	{
-		str[i] = (unsigned char)c;
-		i++;
+		if (*(s + i) == c)
+			return (s + i);
+		i--;
 	}
-	return (b);
+	return (0);
 }
 /*
+#include <stdio.h>
 #include <string.h>
-int main () {
-   char str[17];
-
-   strcpy(str,"This is string.h");
-   ft_memset(str,'$',4);
-   printf("%s", str);
-   return(0);
-}
-*/
+int main(void)
+{
+	char	*s = "hola que talq?";
+	
+	printf("%s\n", ft_strrchr(s, '0'));
+	return (0);
+}*/

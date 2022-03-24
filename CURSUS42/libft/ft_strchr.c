@@ -1,40 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/22 13:17:10 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/24 10:28:36 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/24 13:34:58 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/24 13:46:20 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <libft.h>
-#include <stdio.h>
-
-void	*ft_memset(void *b, int c, size_t len)
+char	*ft_strchr(char *s, int c)
 {
-	size_t	i;
-	char	*str;
-
-	i = 0;
-	str = (char *)b;
-	while (i < len)
+	while (*s != '\0')
 	{
-		str[i] = (unsigned char)c;
-		i++;
+		if (*s == c)
+			return (s);
+		s++;
 	}
-	return (b);
+	return (0);
 }
 /*
+#include <stdio.h>
 #include <string.h>
-int main () {
-   char str[17];
-
-   strcpy(str,"This is string.h");
-   ft_memset(str,'$',4);
-   printf("%s", str);
-   return(0);
+int main(void)
+{
+	char	*s = "hola que tal?";
+	
+	printf("%s\n", ft_strchr(s, 'q'));
+	return (0);
 }
 */
