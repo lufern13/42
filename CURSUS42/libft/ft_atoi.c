@@ -6,11 +6,11 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:52:40 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/26 17:30:27 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:37:17 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//int	ft_isdigit(int c);
+#include "libft.h"
 
 int	process(char *str, int i, int neg, long int sol)
 {

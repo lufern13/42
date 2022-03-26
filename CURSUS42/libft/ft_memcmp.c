@@ -6,11 +6,11 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/26 15:38:16 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/26 15:56:30 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:38:42 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "libft.h"
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
@@ -27,7 +27,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (sol);
 }
-
+/*
 #include <string.h>
 
 int	main(void)
@@ -41,4 +41,4 @@ int	main(void)
 	printf("%d\n", ft_memcmp(s3, s1, 8));
 	printf("%d\n", memcmp(s3, s1, 8));
 	return (0);
-}
+}*/

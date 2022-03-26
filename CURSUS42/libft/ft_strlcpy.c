@@ -6,12 +6,11 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 14:40:25 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/22 18:53:48 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/26 17:38:59 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include <libft.h>
-#include <stdio.h>
+#include "libft.h"
 
 size_t	ft_strlen(char *str);
 
