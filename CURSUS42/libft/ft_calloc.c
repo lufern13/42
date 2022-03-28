@@ -1,40 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 13:48:16 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/28 19:03:03 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/28 14:28:26 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/28 19:01:54 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	*ft_calloc(size_t count, size_t size)
 {
-	int		i;
+	size_t	i;
+	char	*str;
 
-	i = (int)ft_strlen(s);
-	while (*(s + i) != (char)c && i >= 0)
-	{
-		i--;
-	}
-	if (*(s + i) == (char)c)
-		return ((char *)(s + i));
-	return (0);
+	i = 0;
+	str = malloc(size * count);
+	if (count == 0 || size == 0)
+		return (str);
+	if (str == NULL)
+		return (NULL);
+	ft_bzero(str, size * count);
+	return (str);
 }
 /*
-#include <stdio.h>
-#include <string.h>
-int main(void)
+int	main(void)
 {
-	char	*s = "there is so \0ma\0ny \0 \\0 in t\0his stri\0ng !\0\0\0\0";
-	char	c;
+	void	*ptr;
+	void	*p;
 
-	c = '\0';
-	printf("ft:%s\norig:%s\n", ft_strrchr(s, c), strrchr(s, c));
+	ptr = ft_calloc(0, 0);
+	p = calloc(0, 0);
+	if (ptr == ((void *)0))
+		printf("MAL");
+	else
+		printf("BIEN");
+	free(ptr);
+	free(p);
 	return (0);
 }
 */

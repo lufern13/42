@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:19:29 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/26 17:38:45 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/28 11:11:23 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@ void	*ft_memcpy(void *dest, void *src, size_t n)
 {
 	size_t	i;
 
+	if (((char *)dest) == NULL && ((char *)src) == '\0')
+		n = 0;
 	i = 0;
-	while (i < n)
+	while (i < n && (((char *)dest)[i] || ((char *)src)[i]))
 	{
 		((char *)dest)[i] = ((char *)src)[i];
 		i++;
@@ -43,8 +45,11 @@ int	main(void)
 	}
 	a[15] = '\0';
 	a1[15] = '\0';
-	printf("%s\n", ft_memcpy(a1, b, 10));
-	printf("%s\n", memcpy(a, b, 10));
+	printf("%s\n", ft_memcpy(NULL, NULL, 2));
+	printf("%s\n", memcpy(NULL, NULL, 2));
+	printf("%s\n", ft_memcpy(a, b, 2));
+	printf("%s\n", memcpy(a, b, 2));
 	//printf("%s\n", memcpy(&a1[5], &a1[3],10));
 	//printf("%s\n", ft_memcpy(&a[5], &a[3],10));
-}*/
+}
+*/

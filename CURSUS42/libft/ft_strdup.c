@@ -1,40 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 13:48:16 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/28 19:03:03 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/28 18:44:58 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/28 18:59:37 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strdup(const char *s1)
 {
+	int		len;
 	int		i;
+	char	*str;
 
-	i = (int)ft_strlen(s);
-	while (*(s + i) != (char)c && i >= 0)
+	len = (int)ft_strlen(s1);
+	str = malloc(len * sizeof(char) + 1);
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (i <= len)
 	{
-		i--;
+		str[i] = s1[i];
+		i++;
 	}
-	if (*(s + i) == (char)c)
-		return ((char *)(s + i));
-	return (0);
+	return (str);
 }
 /*
-#include <stdio.h>
 #include <string.h>
-int main(void)
-{
-	char	*s = "there is so \0ma\0ny \0 \\0 in t\0his stri\0ng !\0\0\0\0";
-	char	c;
 
-	c = '\0';
-	printf("ft:%s\norig:%s\n", ft_strrchr(s, c), strrchr(s, c));
+int	main(void)
+{
+	const char	*s1 = "this is a normal test";
+	char		*str;
+	size_t		len;
+
+	str = ft_strdup(s1);
+	len = ft_strlen(s1);
+	printf("%zu, %zu", len, ft_strlen(str));
+	free(str);
 	return (0);
 }
 */
