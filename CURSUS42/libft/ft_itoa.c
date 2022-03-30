@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:30:48 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/30 16:45:11 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/30 17:59:12 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ int	num_numbers(int n)
 	int	i;
 	int	j;
 
-	i = 10;
-	j = 1;
+	i = 1;
+	j = 0;
+	if (n <= 0)
+	{
+		n = -n;
+		j++;
+	}
 	while (n / i != 0)
 	{
 		i = i * 10;
@@ -26,35 +31,39 @@ int	num_numbers(int n)
 	}
 	return (j);
 }
-/*
+
 char	*ft_itoa(int n)
 {
 	char	*str;
 	int		len;
-	int		i;
 
 	len = num_numbers(n);
-	str = ft_calloc(len, sizeof(char));
+	str = ft_calloc(len + 1, sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	if (n < 0)
 	{
 		str[0] = '-';
-		i = 1;
+		n = -n;
 	}
-	else
-		i = 0;
-	while (i < len)
+	len--;
+	if (n == 0)
+		str[0] = '0';
+	while (n != 0)
 	{
-		//str[i] = get_num(n, i) + '0';
-		i++;
+		str[len] = (n % 10) + '0';
+		n = n / 10;
+		len--;
 	}
-	str[i] = '\0';
 	return (str);
 }
-*/
+
 int	main(void)
 {
-	printf("%d\n", num_numbers(123));
+	char	*s = ft_itoa(-12598);
+
+	printf("%d\n", num_numbers(0));
+	printf("S: %s\n", s);
+	free(s);
 	return (0);
 }
