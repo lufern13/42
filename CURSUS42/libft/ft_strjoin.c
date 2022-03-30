@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 19:29:49 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/28 19:52:45 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/29 15:27:07 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	size_t	len;
-	size_t	i;
-	size_t	j;
+	//size_t	i;
+	//size_t	j;
 	char	*join;
 
+	if (!s1 || !s2)
+		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
-	if (len == 0)
-		len++;
-	else if (ft_strlen(s1) != 0 && ft_strlen(s2) != 0)
-		len = len - 1;
-	join = malloc(len * sizeof(char));
+	join = ft_calloc(len + 1, sizeof(char));
 	if (join == NULL)
 		return (NULL);
-	i = 0;
+	ft_strlcat(join, s1, ft_strlen(s1) + 1);
+	ft_strlcat(join, s2, len + 1);
+	/*i = 0;
 	while (s1[i])
 	{
 		join[i] = s1[i];
@@ -39,7 +39,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		join[i + j] = s2[j];
 		j++;
 	}
-	join[i + j] = '\0';
+	join[i + j] = '\0';*/
 	return (join);
 }
 /*
