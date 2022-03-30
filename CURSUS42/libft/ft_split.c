@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:48:51 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/30 16:08:02 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/03/30 16:45:20 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,13 @@ char	**ft_split(const char *s, char c)
 			return (NULL);
 		}
 		sol[w] = ft_substr(s, i, len);
+		printf("w = %d, %s\n", w, sol[w]);
 		i = i + len + 1;
 		w++;
 	}
 	return (sol);
 }
-
+/*
 int	main(void)
 {
 	const char	*s = "      split       this for   me  !       ";
@@ -97,6 +98,7 @@ int	main(void)
 	int			i;
 
 	i = 0;
+	//printf("%d\n", num_words(s, c));
 	while (i < num_words(s, c))
 	{
 		printf("i: %d, %s\n", i, sol[i]);
@@ -105,3 +107,4 @@ int	main(void)
 	free_array(sol, num_words(s, c));
 	return (0);
 }
+*/
