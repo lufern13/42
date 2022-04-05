@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 10:29:12 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/30 11:57:05 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/05 21:21:20 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,22 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	return (dest);
 }
 /*
-#include <string.h>
-
 int	main(void)
 {
-	char	*src = "thanks to @apellicc for this test !\r\n";
-	char	dst1[0xF0];
-	int		k;
-	char	*r1;
-	//char	*r2;
+	char *src = "thanks to @apellicc for this test !\r\n";
+	char dst1[0xF0];
+	int size = strlen(src);
+	char *r1 = __builtin___memmove_chk (dst1, src,
+	 size, __builtin_object_size (dst1, 0));
+	char *r2 = ft_memmove(dst1, src, size);
 
-	k = ft_strlen(src);
-	//printf("%p, ", dst1);
-	r1 = ft_memmove("", "" - 1, 0);
-	printf("%p, %s\n", r1, r1);
-	//r2 = memmove(b, a, k);
-	//printf("%p, %s\n", r2, r2);
+	//printf("%p  %p\n", r1, r2);
+	if (r1 != r2)
+		printf("M");
+	r1 = __builtin___memmove_chk ("", "" - 1, 0, __builtin_object_size ("", 0));
+	r2 = ft_memmove("", "" - 1, 0);
+	if (r1 != r2)
+		printf("M");
+	printf("B");
 }
 */

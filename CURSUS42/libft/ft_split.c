@@ -6,12 +6,12 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:48:51 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/30 17:59:15 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/05 21:15:17 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
+/*
 int	num_words(const char *s, char c)
 {
 	int	i;
@@ -31,7 +31,24 @@ int	num_words(const char *s, char c)
 		num--;
 	return (num + 1);
 }
+*/
+int	num_words(const char *s, char c)
+{
+	int	i;
+	int	num;
 
+	i = 0;
+	num = 0;
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		if (i == 0 || s[i - 1] == c)
+			num++;
+		i++;
+	}
+	return (num);
+}
 int	wordlen(const char *s, char c, int start)
 {
 	int	len;
@@ -66,7 +83,7 @@ char	**ft_split(const char *s, char c)
 	if (!s)
 		return (NULL);
 	words = num_words(s, c);
-	sol = ft_calloc(words, sizeof(char));
+	sol = malloc((words) * sizeof(char));
 	if (sol == NULL)
 		return (NULL);
 	i = 0;
@@ -76,35 +93,35 @@ char	**ft_split(const char *s, char c)
 		while (s[i] == c)
 			i++;
 		len = wordlen(s, c, i);
-		sol[w] = (char *)ft_calloc(len, sizeof(char));
+		sol[w] = (char *)ft_calloc(len + 1, sizeof(char));
 		if (sol[w] == NULL)
 		{
 			free_array(sol, words);
 			return (NULL);
 		}
 		sol[w] = ft_substr(s, i, len);
-		//printf("w = %d, %s\n", w, sol[w]);
 		i = i + len + 1;
 		w++;
 	}
 	return (sol);
 }
-/*
+
+#include <string.h>
+
 int	main(void)
 {
-	const char	*s = "      split       this for   me  !       ";
-	char		c = ' ';
-	char		**sol = ft_split(s, c);
-	int			i;
+	char	*s = "      split       this for   me  !       ";
+	char	**expected = ((char*[6]){"split", "this", "for", "me", "!", ((void *)0)});
+	char	**sol = ft_split(s, ' ');
+	int		i;
 
 	i = 0;
-	//printf("%d\n", num_words(s, c));
-	while (i < num_words(s, c))
+	while (i < num_words(s, ' '))
 	{
 		printf("i: %d, %s\n", i, sol[i]);
+		printf("%d\n", strcmp(expected[i], sol[i]));
 		i++;
 	}
-	free_array(sol, num_words(s, c));
+	free_array(sol, num_words(s, ' '));
 	return (0);
 }
-*/

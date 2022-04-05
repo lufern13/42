@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 13:48:16 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/05 21:22:59 by lucifern         ###   ########.fr       */
+/*   Created: 2022/03/31 20:28:14 by lucifern          #+#    #+#             */
+/*   Updated: 2022/03/31 20:36:01 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+void	put_long_int(long int n, int fd)
 {
-	int	i;
+	char	cifra;
 
-	i = (int)ft_strlen(s);
-	while (*(s + i) != (char)c && i >= 0)
+	if (n < 0)
 	{
-		i--;
+		write(fd, "-", 1);
+		n = n * (-1);
 	}
-	if (*(s + i) == (char)c)
-		return ((char *)(s + i));
-	return (0);
+	if (n < 10)
+	{
+		cifra = n + '0';
+		write(fd, &cifra, 1);
+	}
+	else
+	{
+		put_long_int(n / 10, fd);
+		put_long_int(n % 10, fd);
+	}
 }
-/*
-#include <stdio.h>
-#include <string.h>
-int main(void)
-{
-	char	*s = "bonjour";
-	char	c;
 
-	c = 's';
-	printf("ft:%s\norig:%s\n", ft_strrchr(s, c), strrchr(s, c));
-	return (0);
+void	ft_putnbr_fd(int n, int fd)
+{
+	long int	number;
+
+	number = n;
+	put_long_int(number, fd);
 }
-*/

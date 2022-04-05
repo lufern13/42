@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 19:00:39 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/30 13:17:04 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/05 21:23:25 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (NULL);
 	str = ft_calloc(len + 1, sizeof(char));
 	if (str == NULL || len == 0)
-		return (NULL);
+		return (str);
 	if (start > ft_strlen(s))
 		return (str);
 	i = 0;
@@ -36,9 +36,9 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 /*
 int	main(void)
 {
-	const char		*s = "hola que tal?";
-	unsigned int	start = 15;
-	size_t			len = 6;
+	const char		*s = "lorem ipsum dolor sit amet";
+	unsigned int	start = 7;
+	size_t			len = 0;
 	char			*str;
 
 	str = ft_substr(s, start, len);
