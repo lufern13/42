@@ -6,13 +6,13 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:28:14 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/31 20:36:01 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/09 13:51:10 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	put_long_int(long int n, int fd)
+static void	put_long_int(long int n, int fd)
 {
 	char	cifra;
 

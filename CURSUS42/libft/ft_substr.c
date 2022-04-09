@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 19:00:39 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/05 21:23:25 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:56:24 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,19 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	str = ft_calloc(len + 1, sizeof(char));
-	if (str == NULL || len == 0)
-		return (str);
 	if (start > ft_strlen(s))
-		return (str);
+		return (ft_strdup(""));
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	str = ft_calloc((len + 1), sizeof(char));
+	if (!str)
+		return (NULL);
 	i = 0;
-	while (i < len && s[start + i])
+	while (i < len)
 	{
 		str[i] = s[start + i];
 		i++;
 	}
-	str[i] = '\0';
 	return (str);
 }
 /*

@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 19:19:29 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/30 11:56:56 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/09 19:53:26 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	if (((char *)dest) == NULL && ((char *)src) == '\0')
 		n = 0;
 	i = 0;
-	while (i < n && (((char *)dest)[i] || ((char *)src)[i]))
+	while (i < n)
 	{
-		((char *)dest)[i] = ((char *)src)[i];
+		((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
 		i++;
 	}
 	return (dest);

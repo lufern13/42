@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 10:29:12 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/09 19:52:21 by lucifern         ###   ########.fr       */
+/*   Created: 2022/04/09 15:48:20 by lucifern          #+#    #+#             */
+/*   Updated: 2022/04/09 15:58:10 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (!dest && !src)
+	if (!lst)
 		return (NULL);
-	if (dest < src)
-		return (ft_memcpy(dest, src, n));
-	while (n--)
-		((char *)dest)[n] = ((char *)src)[n];
-	return (dest);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
 }
 /*
 int	main(void)
 {
-	char s[] = {65, 66, 67, 68, 69, 0, 45};
-	char s0[] = { 0,  0,  0,  0,  0,  0, 0};
+	t_list	*n1 = ft_lstnew("hola");
+	t_list	*n2 = ft_lstnew("adios");
 
-	printf("%s\n", ft_memmove(s0, s, 7));
+	n1->next = n2;
+	n2->next = NULL;
+	printf("%s", ((char *)ft_lstlast(n1)->content));
+	return (0);
 }
 */

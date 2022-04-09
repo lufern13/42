@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:52:57 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/05 21:23:13 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/09 19:55:46 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,6 @@ char	*ft_strtrim(char const *s1, char const *set)
 		start++;
 	while (ft_strchr(set, (int)s1[sal]) && s1[sal] && sal >= start)
 		sal--;
-	str = ft_calloc(sal - start + 1, sizeof(char));
-	if (str == NULL)
-		return (str);
 	str = ft_substr(s1, start, sal - start + 1);
 	return (str);
 }
@@ -46,6 +43,7 @@ int	main(void)
 	if (!strcmp(ret, s2))
 		printf("EXITO");
 	free(ret);
+	system("leaks a.out");
 	return (0);
 }
 */

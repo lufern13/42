@@ -6,13 +6,13 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:48:51 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/05 21:15:17 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/09 19:55:26 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-/*
-int	num_words(const char *s, char c)
+
+static int	num_words(const char *s, char c)
 {
 	int	i;
 	int	num;
@@ -29,27 +29,12 @@ int	num_words(const char *s, char c)
 	}
 	if (s[i - 1] == c)
 		num--;
+	if (s[0] == '\0')
+		num--;
 	return (num + 1);
 }
-*/
-int	num_words(const char *s, char c)
-{
-	int	i;
-	int	num;
 
-	i = 0;
-	num = 0;
-	while (s[i])
-	{
-		while (s[i] == c)
-			i++;
-		if (i == 0 || s[i - 1] == c)
-			num++;
-		i++;
-	}
-	return (num);
-}
-int	wordlen(const char *s, char c, int start)
+static int	wordlen(const char *s, char c, int start)
 {
 	int	len;
 
@@ -59,7 +44,7 @@ int	wordlen(const char *s, char c, int start)
 	return (len - start);
 }
 
-void	free_array(char **s, int size)
+static void	free_array(char **s, int size)
 {
 	int	i;
 
@@ -75,53 +60,46 @@ void	free_array(char **s, int size)
 char	**ft_split(const char *s, char c)
 {
 	char	**sol;
-	int		words;
-	int		len;
 	int		i;
 	int		w;
 
 	if (!s)
 		return (NULL);
-	words = num_words(s, c);
-	sol = malloc((words) * sizeof(char));
-	if (sol == NULL)
+	sol = ft_calloc(num_words(s, c) + 1, sizeof(char *));
+	if (!sol)
 		return (NULL);
 	i = 0;
 	w = 0;
-	while (w < words)
+	while (w < num_words(s, c))
 	{
 		while (s[i] == c)
 			i++;
-		len = wordlen(s, c, i);
-		sol[w] = (char *)ft_calloc(len + 1, sizeof(char));
-		if (sol[w] == NULL)
+		sol[w] = ft_substr(s, i, wordlen(s, c, i));
+		if (!sol[w])
 		{
-			free_array(sol, words);
+			free_array(sol, num_words(s, c));
 			return (NULL);
 		}
-		sol[w] = ft_substr(s, i, len);
-		i = i + len + 1;
+		i = i + wordlen(s, c, i) + 1;
 		w++;
 	}
 	return (sol);
 }
-
-#include <string.h>
-
+/*
 int	main(void)
 {
-	char	*s = "      split       this for   me  !       ";
-	char	**expected = ((char*[6]){"split", "this", "for", "me", "!", ((void *)0)});
-	char	**sol = ft_split(s, ' ');
+	char	*s = "";
+	char	**sol = ft_split(s, 'z');
+	int		nw = num_words(s, 'z');
 	int		i;
 
 	i = 0;
-	while (i < num_words(s, ' '))
+	while (i < nw)
 	{
 		printf("i: %d, %s\n", i, sol[i]);
-		printf("%d\n", strcmp(expected[i], sol[i]));
 		i++;
 	}
-	free_array(sol, num_words(s, ' '));
+	free_array(sol, nw);
+	system("leaks a.out");
 	return (0);
-}
+}*/

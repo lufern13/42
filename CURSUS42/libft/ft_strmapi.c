@@ -1,33 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 10:29:12 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/09 19:52:21 by lucifern         ###   ########.fr       */
+/*   Created: 2022/04/06 14:36:42 by lucifern          #+#    #+#             */
+/*   Updated: 2022/04/09 13:52:10 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	*ft_memmove(void *dest, const void *src, size_t n)
+/*
+char	ft_f(unsigned int i, char c)
 {
-	if (!dest && !src)
+	return (c + i);
+}
+*/
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+{
+	char	*str;
+	size_t	size;
+	size_t	i;
+
+	if (!s)
 		return (NULL);
-	if (dest < src)
-		return (ft_memcpy(dest, src, n));
-	while (n--)
-		((char *)dest)[n] = ((char *)src)[n];
-	return (dest);
+	size = ft_strlen(s);
+	str = ft_calloc(size + 1, sizeof(char));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		str[i] = f(i, s[i]);
+		i++;
+	}
+	return (str);
 }
 /*
 int	main(void)
 {
-	char s[] = {65, 66, 67, 68, 69, 0, 45};
-	char s0[] = { 0,  0,  0,  0,  0,  0, 0};
+	char	*s = "1234";
+	char	*sol = ft_strmapi(s, ft_f);
 
-	printf("%s\n", ft_memmove(s0, s, 7));
+	printf("%s\n", sol);
+	free(sol);
+	return (0);
 }
 */

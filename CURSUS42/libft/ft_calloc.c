@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 14:28:26 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/28 19:01:54 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/09 13:56:16 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	*ft_calloc(size_t count, size_t size)
 	char	*str;
 
 	i = 0;
+	if (size >= SIZE_MAX)
+		return (NULL);
 	str = malloc(size * count);
 	if (count == 0 || size == 0)
 		return (str);

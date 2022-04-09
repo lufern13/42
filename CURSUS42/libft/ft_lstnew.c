@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memmove.c                                       :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/24 10:29:12 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/09 19:52:21 by lucifern         ###   ########.fr       */
+/*   Created: 2022/04/06 18:51:36 by lucifern          #+#    #+#             */
+/*   Updated: 2022/04/09 17:30:28 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dest, const void *src, size_t n)
+t_list	*ft_lstnew(void *content)
 {
-	if (!dest && !src)
+	t_list	*nodo;
+
+	nodo = malloc(sizeof(t_list));
+	if (!nodo)
 		return (NULL);
-	if (dest < src)
-		return (ft_memcpy(dest, src, n));
-	while (n--)
-		((char *)dest)[n] = ((char *)src)[n];
-	return (dest);
+	nodo->content = content;
+	nodo->next = NULL;
+	return (nodo);
 }
 /*
 int	main(void)
 {
-	char s[] = {65, 66, 67, 68, 69, 0, 45};
-	char s0[] = { 0,  0,  0,  0,  0,  0, 0};
+	char	*content = "a";
+	t_list	*nodo = ft_lstnew((void *)content);
 
-	printf("%s\n", ft_memmove(s0, s, 7));
+	printf("%s %p\n", (char *)nodo->content, nodo->next);
+	free(nodo);
+	return (0);
 }
 */

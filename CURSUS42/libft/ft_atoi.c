@@ -6,13 +6,13 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 13:52:40 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/30 11:58:57 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/09 13:50:19 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	process(const char *str, int i, int neg, long int sol)
+static int	process(const char *str, int i, int neg, long int sol)
 {
 	while (ft_isdigit(str[i]))
 	{

@@ -6,11 +6,14 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:05:24 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/29 15:22:08 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/06 13:48:00 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
 {
@@ -22,10 +25,10 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	if (size < 1)
 		return (srclen);
 	destlen = ft_strlen(dest);
-	if (size < destlen)
+	if (size <= destlen)
 		return (size + srclen);
 	j = 0;
-	while ((j < size - destlen - 1) && src[j] != '\0')
+	while (src[j] && (j < size - destlen - 1))
 	{
 		dest[destlen + j] = src[j];
 		j++;
@@ -38,17 +41,103 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 #include <string.h>
 int	main(void)
 {
-	char	*str = "the cake is a lie !\0I'm hidden lol\r\n";
-	char	buff1[0xF00] = "there is no stars in the sky";
-	char	buff2[0xF00] = "there is no stars in the sky";
-	size_t	max = strlen("the cake is a lie !\0I'm hidden lol\r\n") + 4;
+	char	dest[30];
+	char	*src = (char *)"AAAAAAAAA";
 	size_t	n1;
-	size_t	n2;
 
-	n1 = strlcat(buff1, str, max);
-	n2 = ft_strlcat(buff2, str, max);
-	printf("%zu, %s\n", n1, buff1);
-	printf("%zu, %s\n", n2, buff2);
+	dest[0] = 'B';
+	printf("Sol: %zu\n", ft_strlen(src));
+	n1 = ft_strlcat(dest, src, 1);
+	printf("FT: %zu, %s\n", n1, dest);
+	return (0);
+}
+*/
+/*
+
+void	ft_print_result(int n)
+{
+	char c;
+
+	if (n >= 10)
+		ft_print_result(n / 10);
+	c = n % 10 + '0';
+	write (1, &c, 1);
+}
+
+int		main(int argc, const char *argv[])
+{
+	char	*dest;
+	int		arg;
+
+	alarm(5);
+	if (!(dest = (char *)malloc(sizeof(*dest) * 15)) || argc == 1)
+		return (0);
+	memset(dest, 0, 15);
+	memset(dest, 'r', 6);
+	if ((arg = atoi(argv[1])) == 1)
+	{
+		dest[11] = 'a';
+		ft_print_result(ft_strlcat(dest, "lorem", 15));
+		write(1, "\n", 1);
+		write(1, dest, 15);
+	}
+	else if (arg == 2)
+	{
+		ft_print_result(ft_strlcat(dest, "", 15));
+		write(1, "\n", 1);
+		write(1, dest, 15);
+	}
+	else if (arg == 3)
+	{
+		dest[0] = '\0';
+		dest[11] = 'a';
+		ft_print_result(ft_strlcat(dest, "lorem ipsum", 15));
+		write(1, "\n", 1);
+		write(1, dest, 15);
+	}
+	else if (arg == 4)
+	{
+		dest[14] = 'a';
+		ft_print_result(ft_strlcat(dest, "lorem ipsum dolor sit amet", 15));
+		write(1, "\n", 1);
+		write(1, dest, 15);
+	}
+	else if (arg == 5)
+	{
+		dest[10] = 'a';
+		ft_print_result(ft_strlcat(dest, "lorem ipsum dolor sit amet", 0));
+		write(1, "\n", 1);
+		write(1, dest, 15);
+	}
+	else if (arg == 6)
+	{
+		dest[10] = 'a';
+		ft_print_result(ft_strlcat(dest, "lorem ipsum dolor sit amet", 1));
+		write(1, "\n", 1);
+		write(1, dest, 15);
+	}
+	else if (arg == 7)
+	{
+		memset(dest, 'r', 15);
+		ft_print_result(ft_strlcat(dest, "lorem ipsum dolor sit amet", 5));
+		write(1, "\n", 1);
+		write(1, dest, 15);
+	}
+	else if (arg == 8)
+	{
+		dest[10] = 'a';
+		printf("dest: %s, src: %s\n", dest, "lorem ipsum dolor sit amet");
+		ft_print_result(ft_strlcat(dest, "lorem ipsum dolor sit amet", 6));
+		write(1, "\n", 1);
+		write(1, dest, 15);
+	}
+	else if (arg == 9)
+	{
+		memset(dest, 'r', 14);
+		ft_print_result(ft_strlcat(dest, "lorem ipsum dolor sit amet", 15));
+		write(1, "\n", 1);
+		write(1, dest, 15);
+	}
 	return (0);
 }
 */

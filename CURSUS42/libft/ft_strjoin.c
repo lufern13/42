@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 19:29:49 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/05 21:22:25 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/06 16:40:34 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
 	join = ft_calloc(len + 1, sizeof(char));
-	if (join == NULL)
+	if (!join)
 		return (NULL);
 	ft_strlcat(join, s1, ft_strlen(s1) + 1);
 	ft_strlcat(join, s2, len + 1);
