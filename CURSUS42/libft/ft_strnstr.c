@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 12:33:16 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/06 21:21:26 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/19 14:43:25 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,22 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	int		i;
 	int		j;
 	char	*sol;
+	int		ilen;
 
+	if (*haystack == '\0' && *needle == '\0')
+		return ((char *)haystack);
 	sol = (char *)haystack;
 	if (*needle == '\0')
 		return (sol);
+	ilen = (int)len;
+	if ((int)len < 0)
+		ilen = ft_strlen(haystack) - (int)len;
 	i = 0;
-	while (sol[i] && i < (int)len)
+	while (sol[i] && i < ilen)
 	{
 		j = 0;
 		while (needle[j] && sol[i + j] && needle[j] == sol[i + j]
-			&& i + j < (int)len)
+			&& i + j < ilen)
 			j++;
 		if (j == (int)ft_strlen(needle))
 			return (sol + i);
@@ -34,15 +40,15 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	}
 	return (0);
 }
-/*int	main(void)
-{
-	const char	*haystack = "MZIRIBMZIRIBMZE123";
-	const char	*needle = "MZIRIBMZE";
-	int			k;
 
-	k = 9;
-	printf("k:%d\n%s\n%s\n", k, ft_strnstr(haystack, needle, k), 
-		strnstr(haystack, needle, k));
-	return (0);
-}
-*/
+// int	main(void)
+// {
+// 	char	haystack[30] = "oh no not the empty string !";
+// 	//char	needle[10] = "aabc";
+// 	//char	*empty = (char *)"";
+
+// 	printf("%s\n%s\n", ft_strnstr(haystack, "", 0),
+// 		strnstr(haystack, "", 0));
+// 	//system("leaks a.out");
+// 	return (0);
+// }

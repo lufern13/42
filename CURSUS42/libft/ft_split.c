@@ -6,11 +6,12 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:48:51 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/09 19:55:26 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/19 16:13:12 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
 
 static int	num_words(const char *s, char c)
 {
@@ -20,7 +21,7 @@ static int	num_words(const char *s, char c)
 	i = 0;
 	num = 0;
 	while (s[i] == c)
-	i++;
+		i++;
 	while (s[i])
 	{
 		if (s[i] == c && s[i - 1] != c)
@@ -64,15 +65,15 @@ char	**ft_split(const char *s, char c)
 	int		w;
 
 	if (!s)
-		return (NULL);
-	sol = ft_calloc(num_words(s, c) + 1, sizeof(char *));
+		return (0);
+	sol = ft_calloc((num_words(s, c) + 1), sizeof(char *));
 	if (!sol)
 		return (NULL);
 	i = 0;
 	w = 0;
-	while (w < num_words(s, c))
+	while (w < num_words(s, c) && s[i])
 	{
-		while (s[i] == c)
+		while (s[i] == c && s[i])
 			i++;
 		sol[w] = ft_substr(s, i, wordlen(s, c, i));
 		if (!sol[w])
@@ -85,21 +86,32 @@ char	**ft_split(const char *s, char c)
 	}
 	return (sol);
 }
-/*
-int	main(void)
-{
-	char	*s = "";
-	char	**sol = ft_split(s, 'z');
-	int		nw = num_words(s, 'z');
-	int		i;
 
-	i = 0;
-	while (i < nw)
-	{
-		printf("i: %d, %s\n", i, sol[i]);
-		i++;
-	}
-	free_array(sol, nw);
-	system("leaks a.out");
-	return (0);
-}*/
+// int	main(void)
+// {
+// /*
+// 	char	*s = "";
+// 	char	**sol = ft_split(s, 'z');
+// 	int		nw = num_words(s, 'z');
+// 	int		i;
+
+// 	if (!sol[0])
+// 		printf("ok\n");
+// 	i = 0;
+// 	while (i < nw)
+// 	{
+// 		printf("i: %d, %s\n", i, sol[i]);
+// 		i++;
+// 	}
+// 	free_array(sol, nw);
+// 	//system("leaks a.out");
+// 	return (0);*/
+// 	char	**tabstr;
+
+// 	tabstr = ft_split("", 'z');
+// 	if (!tabstr)
+// 		printf("NULL");
+// 	else
+// 		if (!tabstr[0])
+// 			printf("ok\n");
+// }
