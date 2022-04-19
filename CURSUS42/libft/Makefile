@@ -6,7 +6,7 @@
 #    By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 17:54:24 by lucifern          #+#    #+#              #
-#    Updated: 2022/04/19 16:34:15 by lucifern         ###   ########.fr        #
+#    Updated: 2022/04/19 18:46:04 by lucifern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,6 @@
 NAME = libft.a
 
 CFLAGS = -Werror -Wextra -Wall #banderas
-
-MAIN = main.c
 
 FUNCTIONS = ft_toupper.c ft_tolower.c ft_strchr.c ft_strrchr.c ft_strncmp.c\
 ft_memchr.c ft_memcmp.c ft_strnstr.c ft_atoi.c ft_isalpha.c ft_isdigit.c\

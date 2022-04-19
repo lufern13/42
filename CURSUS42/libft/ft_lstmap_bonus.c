@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/09 18:08:17 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/09 19:14:43 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/19 18:44:09 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		content = f(lst->content);
 		new_lst->next = ft_lstnew(content);
 		if (!new_lst->next)
-			return (ft_lstclear(&new_lst, del), NULL);
+			return (ft_lstclear(&head, del), NULL);
 		new_lst = new_lst->next;
 		lst = lst->next;
 	}
