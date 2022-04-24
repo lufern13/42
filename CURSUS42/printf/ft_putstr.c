@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchr.c                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 17:12:20 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/20 18:01:20 by lucifern         ###   ########.fr       */
+/*   Created: 2022/04/20 17:13:50 by lucifern          #+#    #+#             */
+/*   Updated: 2022/04/20 18:44:25 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchr(char c)
+int	ft_putstr(char *s)
 {
-	return (write(1, &c, 1));
+	int	sol;
+
+	sol = 0;
+	if (!s)
+		return (write(1, "(null)", 6));
+	while (*s)
+	{
+		sol += ft_putchr(*s);
+		s++;
+	}
+	return (sol);
 }

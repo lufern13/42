@@ -5,53 +5,46 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 18:49:24 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/19 20:03:28 by lucifern         ###   ########.fr       */
+/*   Created: 2022/04/20 17:09:50 by lucifern          #+#    #+#             */
+/*   Updated: 2022/04/20 19:09:47 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
+#include "ft_printf.h"
 
-int	process(char c, char *param, int sol)
+static int	process(char c, va_list arg, int sol)
 {
-	char	*hexa;
-	char	*hexamay;
-
-	hexa = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'e', 'f'};
-	hexamay = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A', 'B', 'C', 'D', 'E', 'F'};
 	if (c == 'c')
-		ft_putchr(*param);
+		sol += ft_putchr(va_arg(arg, int));
 	else if (c == 's')
-		ft_putstr(param);
+		sol += ft_putstr(va_arg(arg, char *));
 	else if (c == 'p')
-		ft_putptr(param);
-	else if (c == 'd')
-		ft_putnbrdec(param);
-	else if (c == 'i')
-		ft_putstr(ft_itoa(param));
+		sol += ft_putptr(va_arg(arg, char *));
+	else if (c == 'd' || c == 'i')
+		sol += ft_putnbr_base(va_arg(arg, int), 10);
 	else if (c == 'u')
-		ft_putstr(ft_itoa(param));
+		sol += ft_putnbr_unsig(va_arg(arg, unsigned int), 10);
 	else if (c == 'x')
-		ft_putnbr_base(param, hexa);
+		sol += ft_putnbr_unsig(va_arg(arg, unsigned int), 16);
 	else if (c == 'X')
-		ft_putnbr_base(param, hexamay);
+		sol += ft_putnbr_unsig(va_arg(arg, unsigned int), 17);
 	else if (c == '%')
-		ft_putchr('%');
-	if (c == '%')
-		sol++;
+		sol += ft_putchr('%');
 	else
-		sol = sol + ft_strlen(param);
+		sol += ft_putchr(c);
 	return (sol);
 }
 
 int	ft_printf(char const *s, ...)
 {
-	int	i;
-	int	sol;
+	int		i;
+	int		sol;
+	va_list	arg;
 
 	i = 0;
+	va_start(arg, s);
 	sol = 0;
-	while (s[i])
+	while (s[i] != '\0')
 	{
 		if (s[i] == '%')
 		{
@@ -59,15 +52,22 @@ int	ft_printf(char const *s, ...)
 			if (s[i] == 'c' || s[i] == 's' || s[i] == 'p' || s[i] == 'd'
 				|| s[i] == 'i' || s[i] == 'u' || s[i] == 'x' || s[i] == 'X'
 				|| s[i] == '%')
-				sol = process(s[i], param, sol);
-			param++;
+				sol = process(s[i], arg, sol);
 		}
 		else
-		{
-			ft_putchr(s[i]);
-			sol++;
-		}
+			sol += ft_putchr(s[i]);
 		i++;
 	}
+	va_end(arg);
 	return (sol);
 }
+/*
+#include <limits.h>
+int	main(void)
+{
+	int	a;
+
+	a = ft_printf("%p", LONG_MIN);
+	printf("\nSOL: %d", a);
+}
+*/

@@ -1,18 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchr.c                                        :+:      :+:    :+:   */
+/*   ft_putptr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/20 17:12:20 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/20 18:01:20 by lucifern         ###   ########.fr       */
+/*   Created: 2022/04/20 17:16:56 by lucifern          #+#    #+#             */
+/*   Updated: 2022/04/20 19:05:17 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_putchr(char c)
+int	ft_putptr(void *p)
 {
-	return (write(1, &c, 1));
+	int	sol;
+
+	sol = write(1, "0x", 2);
+	sol += ft_putnbr_unsig((unsigned long)p, 16);
+	return (sol);
 }

@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/19 19:40:03 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/19 19:45:42 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/20 19:00:29 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 # include <stdarg.h>
+# include <unistd.h>
+# include <stdio.h>
 
-int		ft_printf(char const *s, ...);
+int	ft_printf(char const *s, ...);
 
-void	ft_putchr(char c);
-void	ft_putstr(char *s);
-void	ft_putptr(void *p);
-void	ft_putnbrdec(float n);
-void	ft_putnbr_base(int n, char *base);
+int	ft_putchr(char c);
+int	ft_putstr(char *s);
+int	ft_putptr(void *p);
+int	ft_atoi(char *str);
+int	ft_putnbr_base(int n, int b);
+int	ft_putnbr_unsig(unsigned long n, int b);
 
 #endif
