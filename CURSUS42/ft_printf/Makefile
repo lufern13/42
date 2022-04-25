@@ -6,7 +6,7 @@
 #    By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 19:08:18 by lucifern          #+#    #+#              #
-#    Updated: 2022/04/20 19:08:27 by lucifern         ###   ########.fr        #
+#    Updated: 2022/04/25 16:47:21 by lucifern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = libftprintf.a
 CFLAGS = -Wall -Werror -Wextra
 MAIN = main.c
 
-FUNCTIONS = ft_printf.c ft_putchr.c ft_putstr.c ft_atoi.c ft_putptr.c\
+FUNCTIONS = ft_printf.c ft_putchr.c ft_putstr.c ft_putptr.c\
 			ft_putnbr_base.c ft_putnbr_unsig.c
 OBJECTS = $(FUNCTIONS:.c=.o)
 

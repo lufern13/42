@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 19:40:03 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/20 19:00:29 by lucifern         ###   ########.fr       */
+/*   Created: 2022/04/25 16:35:15 by lucifern          #+#    #+#             */
+/*   Updated: 2022/04/25 16:36:45 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
-# include <stdarg.h>
-# include <unistd.h>
-# include <stdio.h>
+//read, malloc, free
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	ft_printf(char const *s, ...);
-
-int	ft_putchr(char c);
-int	ft_putstr(char *s);
-int	ft_putptr(void *p);
-int	ft_atoi(char *str);
-int	ft_putnbr_base(int n, int b);
-int	ft_putnbr_unsig(unsigned long n, int b);
+char	*get_next_line(int fd);
 
 #endif

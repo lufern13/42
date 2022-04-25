@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:09:50 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/20 19:09:47 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/24 15:23:11 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,12 @@ int	ft_printf(char const *s, ...)
 	va_end(arg);
 	return (sol);
 }
-/*
+
 #include <limits.h>
 int	main(void)
 {
 	int	a;
 
-	a = ft_printf("%p", LONG_MIN);
-	printf("\nSOL: %d", a);
+	a = printf("HOLA%05d\n", 123);
+	printf("SOL: %d", a);
 }
-*/

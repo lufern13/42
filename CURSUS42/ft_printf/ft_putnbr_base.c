@@ -6,13 +6,13 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:19:16 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/20 19:09:38 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/24 16:10:07 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	put_long_int(unsigned n, int len, char *base)
+static int	put_long_int(unsigned int n, int len, char *base)
 {
 	char	cifra;
 	int		sol;
