@@ -6,9 +6,54 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:36:20 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/25 18:06:35 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/07/27 20:10:30 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	if (n != 0)
+		ft_memset(s, '\0', n);
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	size_t	i;
+	char	*str;
+
+	i = 0;
+	if (size >= SIZE_MAX)
+		return (NULL);
+	str = malloc(size * count);
+	if (count == 0 || size == 0)
+		return (str);
+	if (str == NULL)
+		return (NULL);
+	ft_bzero(str, size * count);
+	return (str);
+}
+
+char	*ft_sub_inistr(char const *s, size_t len)
+{
+	char	*str;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	str = ft_calloc((len + 1), sizeof(char));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
 
 void	*ft_memset(void *b, int c, size_t len)
 {
@@ -51,28 +96,12 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	return (destlen + srclen);
 }
 
-char	*ft_strjoin_to_end(char const *s1, char const *s2)
+size_t	ft_strlen(const char *str)
 {
-	int		len1;
-	int		len;
-	char	*join;
+	size_t	i;
 
-	if (!s1 || !s2)
-		return (NULL);
-	len1 = 0;
-	while (s1[len1])
-		len1++;
-	len = 0;
-	while (s2[len])
-		len++;
-	len += len1;
-	join = malloc((len + 1) * sizeof(char));
-	if ((len + 1) == 0)
-		return (join);
-	if (join == NULL)
-		return (NULL);
-	ft_memset(join, '\0', (len + 1) * sizeof(char));
-	ft_strlcat(join, s1, len1 + 1);
-	ft_strlcat(join, s2, len + 1);
-	return (join);
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
 }

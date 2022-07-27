@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:19:16 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/24 16:10:07 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/25 13:40:48 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,9 @@ static int	put_long_int(unsigned int n, int len, char *base)
 
 int	ft_putnbr_base(int n, int b)
 {
-	long int	number;
-	char		*base;
-	int			sol;
+	unsigned int	number;
+	char			*base;
+	int				sol;
 
 	sol = 0;
 	if (n < 0)

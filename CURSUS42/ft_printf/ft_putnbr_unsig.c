@@ -6,13 +6,13 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 19:02:22 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/20 19:06:39 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/04/25 13:50:54 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	put_long_int(unsigned long long int n, int len, char *base)
+static int	put_long_int(unsigned long int n, int len, char *base)
 {
 	char	cifra;
 	int		sol;
@@ -33,12 +33,10 @@ static int	put_long_int(unsigned long long int n, int len, char *base)
 
 int	ft_putnbr_unsig(unsigned long int n, int b)
 {
-	unsigned long long	number;
 	char				*base;
 	int					sol;
 
 	base = NULL;
-	number = n;
 	if (b == 10)
 		base = "0123456789";
 	else if (b == 16)
@@ -48,6 +46,6 @@ int	ft_putnbr_unsig(unsigned long int n, int b)
 		b = 16;
 		base = "0123456789ABCDEF";
 	}
-	sol = put_long_int(number, b, base);
+	sol = put_long_int(n, b, base);
 	return (sol);
 }
