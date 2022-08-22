@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:36:20 by lucifern          #+#    #+#             */
-/*   Updated: 2022/07/27 20:10:30 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/07/28 12:03:38 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (str);
 }
 
-char	*ft_sub_inistr(char const *s, size_t len)
+char	*ft_sub_inistr(char *s, size_t len)
 {
 	char	*str;
 	size_t	i;
@@ -52,6 +52,7 @@ char	*ft_sub_inistr(char const *s, size_t len)
 		i++;
 	}
 	str[i] = '\0';
+	free(s);
 	return (str);
 }
 

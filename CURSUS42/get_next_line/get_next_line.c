@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:45:44 by lucifern          #+#    #+#             */
-/*   Updated: 2022/07/27 20:15:53 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/08/22 21:40:05 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-char	*ft_strjoin_to_end(char const *s1, char const *s2)
+char	*ft_strjoin_to_end(char *s1, char *s2)
 {
 	int		len1;
 	int		len;
@@ -38,13 +38,15 @@ char	*ft_strjoin_to_end(char const *s1, char const *s2)
 	ft_memset(join, '\0', (len + 1) * sizeof(char));
 	ft_strlcat(join, s1, len1 + 1);
 	ft_strlcat(join, s2, len + 1);
+	free(s1);
 	return (join);
 }
 
+//PONER READING COMO ESTÁTICA PARA QUE NO MACHAQUE LO QUE SOBRA DE READING
 char	*get_next_line(int fd)
 {
-	static char	*mem;
-	char		*reading;
+	char		*mem;
+	static char	*reading;
 	int			i;
 
 	if (fd < 0)
@@ -56,24 +58,20 @@ char	*get_next_line(int fd)
 		free(reading);
 		return (NULL);
 	}
-	if (mem == NULL)
-		mem = ft_calloc(1, sizeof(char));
+	mem = ft_calloc(1, sizeof(char));
 	i = 0;
 	while (reading[i] && reading[i] != '\n')
+	{
+		mem = ft_strjoin_to_end(mem, reading[i]);
 		i++;
-	if (i == BUFFER_SIZE)
-	{
-		mem = ft_strjoin_to_end(mem, reading);
-		//ft_strlcat(mem, reading, ft_strlen(mem) + BUFFER_SIZE);
-		free(reading);
-		get_next_line(fd);
 	}
-	else
+	if (reading[i] == '\n')
+		mem = ft_strjoin_to_end(mem, "\n");
+	else if (reading[i] != '\n'&& reading[i] != '\0')
 	{
-		if (i > 0)
-			i--;
 		mem = ft_strjoin_to_end(mem, ft_sub_inistr(reading, i));
-		free(reading);
+		reading = ft_sub_inistr(reading, i);
+		//CORTAR READING PARA QUEDARME CON EL FINAL
 	}
 	return (mem);
 }
@@ -88,10 +86,12 @@ int	main(void)
 	int		fd;
 	char	*s;
 
-	atexit(leaks);
+	//atexit(leaks);
 	fd = open("41_with_nl", O_RDONLY);
 	s = get_next_line(fd);
-	printf("LINE: %s\n", s);
+	printf("LINE:%s", s);
+	s = get_next_line(fd);
+	printf("LINE:%s", s);
 	close(fd);
 	free(s);
 }
