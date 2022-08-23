@@ -115,7 +115,7 @@ char	*ft_strjoin_to_end(char *s1, char *s2)
 char	*get_next_line(int fd)
 {
 	static char	*mem;
-	char		*reading; //PONER ESTA COMO ESTÁTICA PARA QUE NO MACHAQUE LO QUE SOBRA DE READING
+	char		*reading;
 	int			i;
 
 	if (fd < 0)

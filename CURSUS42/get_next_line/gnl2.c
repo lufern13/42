@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   gnl2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/25 16:45:44 by lucifern          #+#    #+#             */
-/*   Updated: 2022/08/23 15:13:37 by lucifern         ###   ########.fr       */
+/*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
+/*   Updated: 2022/08/23 15:34:18 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,17 @@ int	ft_strlen(char *s)
 	return (i);
 }
 
-//PONER READING COMO ESTÁTICA PARA QUE NO MACHAQUE LO QUE SOBRA DE READING
 char	*get_next_line(int fd)
 {
-	char		*line;
 	static char	*reading;
-	int			i;
+	char		*line;
 	int			rd;
+	int			i;
 
-	if (fd < 0)
-		return (NULL);
 	line = ft_calloc(1, sizeof(char));
 	rd = BUFFER_SIZE;
-	printf("line: %s, reading:%s\n\n", line, reading);
 	while (rd == BUFFER_SIZE)
-	{	
+	{
 		if (reading == NULL)
 		{
 			reading = ft_calloc(BUFFER_SIZE, sizeof(char));
@@ -60,33 +56,30 @@ char	*get_next_line(int fd)
 			if (rd < 0)
 			{
 				free(reading);
+				free(line);
 				return (NULL);
 			}
-			if (rd < BUFFER_SIZE || (rd == BUFFER_SIZE && reading[rd - 1] == '\n'))
-				rd = 0;
 		}
 		i = 0;
-		printf("C:%s\n", reading);
 		while (reading[i] && reading[i] != '\n')
 		{
-			ft_strlcat(line, &reading[i], ft_strlen(line) + 2);
+			ft_strlcat(line, &reading[i], ft_strlen(line) + 1);
 			i++;
 		}
 		if (reading[i] == '\n')
-			ft_strlcat(line, "\n", ft_strlen(line) + 2);
-		if (reading[i] == '\0')
-			return (line);
+		{
+			ft_strlcat(line, "\n", ft_strlen(line) + 1);
+			rd = 0;
+		}
 		if (i == BUFFER_SIZE)
+		{
+			//free(reading);
 			reading = NULL;
+		}
 		else
 			reading = ft_sub_endstr(reading, i);
 	}
 	return (line);
-}
-
-void	leaks(void)
-{
-	system ("leaks a.out");
 }
 
 int	main(void)
@@ -94,7 +87,6 @@ int	main(void)
 	int		fd;
 	char	*s;
 
-	//atexit(leaks);
 	fd = open("41_with_nl", O_RDONLY);
 	s = get_next_line(fd);
 	printf("LINE1:%s", s);

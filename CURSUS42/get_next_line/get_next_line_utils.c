@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:36:20 by lucifern          #+#    #+#             */
-/*   Updated: 2022/07/28 12:03:38 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/08/23 13:47:33 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*ft_calloc(size_t count, size_t size)
 	ft_bzero(str, size * count);
 	return (str);
 }
-
+/*
 char	*ft_sub_inistr(char *s, size_t len)
 {
 	char	*str;
@@ -55,6 +55,7 @@ char	*ft_sub_inistr(char *s, size_t len)
 	free(s);
 	return (str);
 }
+*/
 
 void	*ft_memset(void *b, int c, size_t len)
 {
@@ -95,14 +96,4 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	}
 	dest[destlen + j] = '\0';
 	return (destlen + srclen);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
 }
