@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2022/08/23 15:34:18 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/08/24 13:56:08 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ char	*ft_sub_endstr(char *s, int ini)
 		s++;
 		i++;
 	}
+	//printf("subendstr:%s\n", s);
 	return (s);
 }
 
@@ -39,47 +40,45 @@ int	ft_strlen(char *s)
 }
 
 char	*get_next_line(int fd)
+/*
+	IDEA:
+		reading = funcion leer(fd, reading)
+			en esta funcion compruebo que en reading no haya \n; si los hay devuelvo
+			el reading a partir del salto, si no los hay le voy anexando sucesivas
+			lecturas hasta encontrar \n
+		line = función linea (reading)
+			me quedo con la parte de reading hasta \n
+		reading = funcion conservar reading(reading)
+			me quedo con todo lo que hay despues de \n en reading
+*/
 {
 	static char	*reading;
 	char		*line;
-	int			rd;
-	int			i;
 
-	line = ft_calloc(1, sizeof(char));
-	rd = BUFFER_SIZE;
-	while (rd == BUFFER_SIZE)
-	{
-		if (reading == NULL)
-		{
-			reading = ft_calloc(BUFFER_SIZE, sizeof(char));
-			rd = read(fd, reading, BUFFER_SIZE);
-			if (rd < 0)
-			{
-				free(reading);
-				free(line);
-				return (NULL);
-			}
-		}
-		i = 0;
-		while (reading[i] && reading[i] != '\n')
-		{
-			ft_strlcat(line, &reading[i], ft_strlen(line) + 1);
-			i++;
-		}
-		if (reading[i] == '\n')
-		{
-			ft_strlcat(line, "\n", ft_strlen(line) + 1);
-			rd = 0;
-		}
-		if (i == BUFFER_SIZE)
-		{
-			//free(reading);
-			reading = NULL;
-		}
-		else
-			reading = ft_sub_endstr(reading, i);
-	}
+	reading = read_line(fd, reading);
+	line = get_line(reading);
+	reading = rest_static(reading);
 	return (line);
+}
+
+char	*read_line(int fd, char *reading)
+{
+	char	*new_read;
+	int		rd;
+
+	rd = BUFFER_SIZE
+	while (!strchr(reading, '\n') && rd == BUFFER_SIZE)
+	{
+		new_read = ft_calloc(BUFFER_SIZE, sizeof(char));
+		rd = read(fd, new_read, BUFFER_SIZE);
+		reading = ft_strjoin(reading, new_read);
+	}
+}
+
+
+void	leaks(void)
+{
+	system ("leaks a.out");
 }
 
 int	main(void)
@@ -87,6 +86,7 @@ int	main(void)
 	int		fd;
 	char	*s;
 
+	atexit(leaks);
 	fd = open("41_with_nl", O_RDONLY);
 	s = get_next_line(fd);
 	printf("LINE1:%s", s);

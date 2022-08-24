@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:36:20 by lucifern          #+#    #+#             */
-/*   Updated: 2022/08/23 13:47:33 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/08/24 13:54:14 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,46 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	}
 	dest[destlen + j] = '\0';
 	return (destlen + srclen);
+}
+
+//  ----------------------------------------------  *\
+
+
+char	*ft_strjoin(char const *s1, char const *s2)
+/*
+	Une las cadenas s1 y s2 en una nueva cadena join.
+	Devuelve:
+		join
+*/
+{
+	size_t	len;
+	char	*join;
+
+	if (!s1 || !s2)
+		return (NULL);
+	len = ft_strlen(s1) + ft_strlen(s2);
+	join = ft_calloc(len + 1, sizeof(char));
+	if (!join)
+		return (NULL);
+	ft_strlcat(join, s1, ft_strlen(s1) + 1);
+	ft_strlcat(join, s2, len + 1);
+	free(s1);
+	return (join);
+}
+
+char	*ft_strchr(const char *s, int c)
+/*
+	Busca la letra c dentro de la cadena *s
+	Devuelve:
+		un puntero a la posición de c o NULL
+*/
+{
+	int	i;
+
+	i = 0;
+	while (*s && *s != (char)c)
+		s++;
+	if (*s == (char)c)
+		return ((char *)s);
+	return (0);
 }

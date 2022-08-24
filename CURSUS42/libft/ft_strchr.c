@@ -6,13 +6,18 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/24 13:34:58 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/06 20:49:58 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/08/24 13:48:41 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
+/*
+	Busca la letra c dentro de la cadena *s
+	Devuelve:
+		un puntero a la posición de c o NULL
+*/
 {
 	int	i;
 
