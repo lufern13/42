@@ -6,11 +6,26 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:36:20 by lucifern          #+#    #+#             */
-/*   Updated: 2022/08/24 13:54:14 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/08/29 20:02:09 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+void	*ft_memset(void *b, int c, size_t len)
+{
+	size_t	i;
+	char	*str;
+
+	i = 0;
+	str = (char *)b;
+	while (i < len)
+	{
+		str[i] = (unsigned char)c;
+		i++;
+	}
+	return (b);
+}
 
 void	ft_bzero(void *s, size_t n)
 {
@@ -33,43 +48,6 @@ void	*ft_calloc(size_t count, size_t size)
 		return (NULL);
 	ft_bzero(str, size * count);
 	return (str);
-}
-/*
-char	*ft_sub_inistr(char *s, size_t len)
-{
-	char	*str;
-	size_t	i;
-
-	if (!s)
-		return (NULL);
-	str = ft_calloc((len + 1), sizeof(char));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (i < len)
-	{
-		str[i] = s[i];
-		i++;
-	}
-	str[i] = '\0';
-	free(s);
-	return (str);
-}
-*/
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	size_t	i;
-	char	*str;
-
-	i = 0;
-	str = (char *)b;
-	while (i < len)
-	{
-		str[i] = (unsigned char)c;
-		i++;
-	}
-	return (b);
 }
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size)
@@ -97,11 +75,9 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	dest[destlen + j] = '\0';
 	return (destlen + srclen);
 }
+////////////////////////////////////////
 
-//  ----------------------------------------------  *\
-
-
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 /*
 	Une las cadenas s1 y s2 en una nueva cadena join.
 	Devuelve:
@@ -123,7 +99,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	return (join);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 /*
 	Busca la letra c dentro de la cadena *s
 	Devuelve:
@@ -139,3 +115,39 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)s);
 	return (0);
 }
+
+int	ft_position_char(char *s, char c)
+/*
+	devulevo la posicion de la primera aparicion de c en s
+*/
+{
+	int	i;
+
+	i = 0;
+	while (s[i] != c)
+		i++;
+	return (i);
+}
+
+/*
+char	*ft_sub_inistr(char *s, size_t len)
+{
+	char	*str;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	str = ft_calloc((len + 1), sizeof(char));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	free(s);
+	return (str);
+}
+*/
