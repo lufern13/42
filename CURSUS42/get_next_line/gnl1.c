@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   gnl1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:45:44 by lucifern          #+#    #+#             */
-/*   Updated: 2022/08/29 20:40:25 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/08/31 12:56:57 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,7 +217,7 @@ char	*read_line(int fd, char *reading)
 		rd = read(fd, new_read, BUFFER_SIZE);
 		if (rd < 1)
 		{
-			free(reading);
+			ft_free_alloc(reading, 0);
 			return (NULL);
 		}
 		reading = ft_strjoin(reading, new_read);

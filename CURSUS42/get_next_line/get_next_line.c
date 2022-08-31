@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2022/08/29 20:49:54 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/08/31 13:33:01 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,6 @@
 
 #include <stdio.h>
 #include <fcntl.h>
-
-int	ft_strlen(const char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 char	*read_line(int fd, char *reading)
 /*
@@ -43,11 +33,10 @@ char	*read_line(int fd, char *reading)
 		rd = read(fd, new_read, BUFFER_SIZE);
 		if (rd < 1)
 		{
-			free(reading);
+			ft_free_alloc(reading, 0);
 			return (NULL);
 		}
 		reading = ft_strjoin(reading, new_read);
-		//printf("read:%s, new:%s\n", reading, new_read);
 	}
 	return (reading);
 }
@@ -59,9 +48,10 @@ char	*get_line(char *reading, int *i)
 {
 	char	*line;
 
+	line = NULL;
 	if (!reading)
 	{
-		free(reading);
+		ft_free_alloc(reading, line);
 		return (NULL);
 	}
 	line = ft_calloc(ft_position_char(reading, '\n') + 1, sizeof(char));
@@ -82,10 +72,8 @@ char	*reset_reading(char *reading, int i)
 
 	j = 0;
 	i++;
-	//printf("1 READING:%s\n", reading);
 	while (reading[i + j])
 	{
-		//printf("cambio %c por %c\n", reading[i], reading[i + j]);
 		reading[i] = reading[i + j];
 		j++;
 	}
@@ -97,38 +85,48 @@ char	*reset_reading(char *reading, int i)
 	return (reading);
 }
 
+void	ft_free_alloc(char *s1, char *s2)
+{
+	if (s1)
+	{
+		free(s1);
+		s1 = NULL;
+	}
+	else
+		free(s1);
+	if (s2)
+	{
+		free(s2);
+		s2 = NULL;
+	}
+	else
+		free(s2);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*reading;
 	char		*line;
 	int			i;
 
-	if (fd < 0)
+	if (fd <= 0 || BUFFER_SIZE < 1 || fd > 1024)
 	{
-		free(reading);
+		ft_free_alloc(reading, 0);
 		return (NULL);
 	}
-	if (BUFFER_SIZE < 1)
-		return (NULL);
 	reading = read_line(fd, reading);
-	//printf("dir read:%p\n", reading);
-	//printf("READ:%s\n", reading);
 	i = 0;
 	line = get_line(reading, &i);
+	//printf("%s, %s\n", reading, line);
 	if (!line)
 	{
-		free(reading);
-		free(line);
+		ft_free_alloc(reading, line);
 		return (NULL);
 	}
-	//printf("BB%i\n", i);
-	//printf("LINE:%s\n", line);
-	reading = reset_reading(reading, i);
-	//printf("FINAL READING:%s\n", reading);
-	printf("AAAAAAAAAAAAAAAAAAAAAAAdir read:%p\n", reading);
+	reading = reset_reading(reading, ft_position_char(reading, '\n'));
 	return (line);
 }
-
+/*
 void	leaks(void)
 {
 	system ("leaks a.out");
@@ -141,14 +139,15 @@ int	main(void)
 
 	atexit(leaks);
 	fd = open("41_with_nl", O_RDONLY);
-	s = get_next_line(-1);
-	printf("LINE1:%s", s);
-	free(s);
 	s = get_next_line(fd);
-	printf("LINE2:%s", s);
+	printf("LINE1:%s", s);
+	//free(s);
+	//s = get_next_line(fd);
+	//printf("LINE2:%s", s);
 	//free(s);
 	//s = get_next_line(fd);
 	//printf("LINE3:%s", s);
 	free(s);
 	close(fd);
 }
+*/
