@@ -6,12 +6,11 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2022/08/31 13:33:01 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/09/01 14:43:35 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 #include <stdio.h>
 #include <fcntl.h>
 
@@ -31,9 +30,9 @@ char	*read_line(int fd, char *reading)
 	{
 		new_read = ft_calloc(BUFFER_SIZE, sizeof(char));
 		rd = read(fd, new_read, BUFFER_SIZE);
-		if (rd < 1)
+		if (rd < 1 && reading[0] == '\0')
 		{
-			ft_free_alloc(reading, 0);
+			ft_free_alloc(reading, new_read);
 			return (NULL);
 		}
 		reading = ft_strjoin(reading, new_read);
@@ -47,6 +46,7 @@ char	*get_line(char *reading, int *i)
 */
 {
 	char	*line;
+	int		pos;
 
 	line = NULL;
 	if (!reading)
@@ -54,12 +54,16 @@ char	*get_line(char *reading, int *i)
 		ft_free_alloc(reading, line);
 		return (NULL);
 	}
-	line = ft_calloc(ft_position_char(reading, '\n') + 1, sizeof(char));
+	pos = ft_position_char(reading, '\n');
+	line = ft_calloc(pos + 1, sizeof(char));
+	line[pos + 1] = '\0';
 	while (reading[*i] && reading[*i] != '\n')
 	{
 		line[*i] = reading[*i];
 		*i += 1;
 	}
+	if (reading[*i] == '\n')
+		line[*i] = reading[*i];
 	return (line);
 }
 
@@ -116,8 +120,9 @@ char	*get_next_line(int fd)
 	}
 	reading = read_line(fd, reading);
 	i = 0;
+	//printf("A\n");
 	line = get_line(reading, &i);
-	//printf("%s, %s\n", reading, line);
+	//printf("BBB :%s, %s\n", reading, line);
 	if (!line)
 	{
 		ft_free_alloc(reading, line);
@@ -126,6 +131,7 @@ char	*get_next_line(int fd)
 	reading = reset_reading(reading, ft_position_char(reading, '\n'));
 	return (line);
 }
+
 /*
 void	leaks(void)
 {
@@ -137,13 +143,13 @@ int	main(void)
 	int		fd;
 	char	*s;
 
-	atexit(leaks);
+	//atexit(leaks);
 	fd = open("41_with_nl", O_RDONLY);
 	s = get_next_line(fd);
 	printf("LINE1:%s", s);
-	//free(s);
-	//s = get_next_line(fd);
-	//printf("LINE2:%s", s);
+	free(s);
+	s = get_next_line(fd);
+	printf("LINE2:%s", s);
 	//free(s);
 	//s = get_next_line(fd);
 	//printf("LINE3:%s", s);
