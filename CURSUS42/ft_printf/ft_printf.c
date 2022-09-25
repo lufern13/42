@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:09:50 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/20 19:09:47 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/09/25 17:22:22 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(void)
 {
 	int	a;
 
-	a = ft_printf("%p", LONG_MIN);
-	printf("\nSOL: %d", a);
+	a = ft_printf("%i", 10+20);
+	printf("\nSOL: %i", 10+20);
 }
 */

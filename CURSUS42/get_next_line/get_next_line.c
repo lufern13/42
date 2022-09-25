@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2022/09/01 14:43:35 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/09/25 19:13:47 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*read_line(int fd, char *reading)
 		}
 		reading = ft_strjoin(reading, new_read);
 	}
+	//printf("reading: %s\n", reading);
 	return (reading);
 }
 
@@ -74,17 +75,22 @@ char	*reset_reading(char *reading, int i)
 {
 	int	j;
 
-	j = 0;
-	i++;
-	while (reading[i + j])
+	//if (i == ft_position_char(reading, '\0'))
+		//ft_free_alloc(reading, 0);
+	//else
 	{
-		reading[i] = reading[i + j];
-		j++;
-	}
-	while (reading[j])
-	{
-		reading[j] = '\0';
-		j++;
+		j = 0;
+		i++;
+		while (reading[i + j])
+		{
+			reading[i] = reading[i + j];
+			j++;
+		}
+		while (reading[j])
+		{
+			reading[j] = '\0';
+			j++;
+		}
 	}
 	return (reading);
 }
@@ -102,7 +108,7 @@ void	ft_free_alloc(char *s1, char *s2)
 	{
 		free(s2);
 		s2 = NULL;
-	}
+	}  
 	else
 		free(s2);
 }
@@ -113,6 +119,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			i;
 
+	//printf("reading0: %s\n", reading);
 	if (fd <= 0 || BUFFER_SIZE < 1 || fd > 1024)
 	{
 		ft_free_alloc(reading, 0);
@@ -120,15 +127,14 @@ char	*get_next_line(int fd)
 	}
 	reading = read_line(fd, reading);
 	i = 0;
-	//printf("A\n");
 	line = get_line(reading, &i);
-	//printf("BBB :%s, %s\n", reading, line);
 	if (!line)
 	{
 		ft_free_alloc(reading, line);
 		return (NULL);
 	}
 	reading = reset_reading(reading, ft_position_char(reading, '\n'));
+	//printf("reading2: %c\n", reading);
 	return (line);
 }
 

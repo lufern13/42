@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:29:39 by lucifern          #+#    #+#             */
-/*   Updated: 2022/09/01 14:38:34 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/09/25 18:50:51 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,23 @@
 
 int	main(void)
 {
-	int		fd;
-	char	*s;
+	//int		fd;
+	//char	*s;
+	char	*str;
 
-	fd = open("41_with_nl", O_RDONLY);
-	s = get_next_line(fd);
-	printf("LINE1:%s", s);
-	free(s);
-	s = get_next_line(fd);
-	printf("LINE2:%s", s);
+	str = malloc(10);
+	str = "0123456789";
+	printf("%s\n", reset_reading(str, 3));
+	//fd = open("41_with_nl", O_RDONLY);
+	//s = get_next_line(fd);
+	//printf("LINE1:%s\n\n\n", s);
 	//free(s);
 	//s = get_next_line(fd);
-	//printf("LINE3:%s", s);
-	free(s);
-	//system ("leaks a.out");
-	close(fd);
+	//printf("LINE2:%s\n\n\n", s);
+	////free(s);
+	////s = get_next_line(fd);
+	////printf("LINE3:%s", s);
+	//free(s);
+	////system ("leaks a.out");
+	//close(fd);
 }
