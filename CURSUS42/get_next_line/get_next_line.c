@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2022/09/25 19:13:47 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/11/02 20:17:05 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*read_line(int fd, char *reading)
 		reading = ft_calloc(1, 1);
 	while (!ft_strchr(reading, '\n') && rd == BUFFER_SIZE)
 	{
-		new_read = ft_calloc(BUFFER_SIZE, sizeof(char));
+		new_read = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 		rd = read(fd, new_read, BUFFER_SIZE);
 		if (rd < 1 && reading[0] == '\0')
 		{
@@ -108,7 +108,7 @@ void	ft_free_alloc(char *s1, char *s2)
 	{
 		free(s2);
 		s2 = NULL;
-	}  
+	}
 	else
 		free(s2);
 }
@@ -134,7 +134,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	}
 	reading = reset_reading(reading, ft_position_char(reading, '\n'));
-	//printf("reading2: %c\n", reading);
+	//printf("reading2: %s\n", reading);
 	return (line);
 }
 
