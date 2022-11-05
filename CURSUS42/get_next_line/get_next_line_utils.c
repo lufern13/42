@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 17:36:20 by lucifern          #+#    #+#             */
-/*   Updated: 2022/11/02 19:49:30 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/11/05 15:40:37 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		len1;
 	int		len2;
 
-	if (!s1 || !s2)
+	if (!s2)
 		return (NULL);
 	len1 = 0;
 	while (s1[len1])

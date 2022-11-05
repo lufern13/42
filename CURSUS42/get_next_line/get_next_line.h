@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:35:15 by lucifern          #+#    #+#             */
-/*   Updated: 2022/09/01 11:31:56 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/11/05 18:38:08 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ char	*read_line(int fd, char *reading);
 char	*reset_reading(char *reading, int i);
 
 int		ft_position_char(char *s, char c);
+int		ft_strlen(char *str);
 
 void	ft_free_alloc(char *s1, char *s2);
 void	*ft_calloc(size_t count, size_t size);

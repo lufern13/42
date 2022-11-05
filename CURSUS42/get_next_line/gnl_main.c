@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:29:39 by lucifern          #+#    #+#             */
-/*   Updated: 2022/11/02 19:52:33 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/11/05 17:15:45 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,23 @@ int	main(void)
 	printf("LINE1:%s.\n", s);
 	free(s);
 	s = get_next_line(fd);
-	printf("LINE2:%s.", s);
+	printf("LINE2:%s.\n", s);
+	free(s);
+	s = get_next_line(fd);
+	printf("LINE3:%s.\n", s);
+	free(s);
+	s = get_next_line(fd);
+	printf("LINE4:%s.\n", s);
+	free(s);
+	s = get_next_line(fd);
+	printf("LINE5:%s.\n", s);
+	free(s);
+	s = get_next_line(fd);
+	printf("LINE6:%s.\n", s);
 	free(s);
 	////s = get_next_line(fd);
 	////printf("LINE3:%s", s);
 	//free(s);
-	////system ("leaks a.out");
-	//close(fd);
+	//system ("leaks a.out");
+	close(fd);
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   gnl2.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2022/11/05 18:38:36 by lucifern         ###   ########.fr       */
+/*   Created: 2022/11/05 18:01:39 by lucifern          #+#    #+#             */
+/*   Updated: 2022/11/05 18:35:29 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,35 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-char	*read_line(int fd, char *reading)
+//								IDEA NUEVA:
+//
+//Ahora en mi variable estática solo guardaré lo leído que quiero almacenar
+//para la siguiente ejecución.
+//
+//Es decir, en reading voy guardando todos los new_read hasta que encuentre un
+//salto de línea, una vez encontrado copio todo lo que hay después a store (la
+//variable estática).
+//
+//Cojo la parte que me interesa de reading para formar la línea y luego lo 
+//libero, pues ya tengo en store lo que necesito guardar.
+
+void	copy_store(char *reading, int sl, char *stored)
+{
+	int	i;
+
+	i = 0;
+	while (reading[sl + i])
+	{
+		stored[i] = reading[sl + i];
+		i++;
+	}
+	return (stored);
+}
+
+char	*read_line(int fd, char *reading, char *stored)
 /*
-	compruebo que en reading no haya \n; si los hay devuelvo el reading a partir
-	del salto, si no los hay le voy anexando sucesivas lecturas hasta encontrar \n
+	Compruebo que en reading no haya \n; si los hay devuelvo el reading a partir
+	del salto, si no los hay le voy anexando sucesivas lecturas hasta encontrar \n.
 */
 {
 	char	*new_read;
@@ -26,7 +51,8 @@ char	*read_line(int fd, char *reading)
 	rd = BUFFER_SIZE;
 	if (!reading)
 		reading = ft_calloc(1, 1);
-	while (!ft_strchr(reading, '\n') && rd == BUFFER_SIZE)
+	while (!ft_strchr(reading, '\n') && !ft_strchr(stored, '\n')\
+		 && rd == BUFFER_SIZE)
 	{
 		new_read = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 		rd = read(fd, new_read, BUFFER_SIZE);
@@ -37,13 +63,19 @@ char	*read_line(int fd, char *reading)
 		}
 		reading = ft_strjoin(reading, new_read);
 	}
-	//printf("reading: %s\n", reading);
+	if (ft_strchr(reading, '\n'))
+	{
+		rd = 0;
+		while (reading[rd] != '\n')
+			rd++;
+		copy_store(reading, rd + 1, stored);
+	}
 	return (reading);
 }
 
 char	*get_line(char *reading, int *i)
 /*
-	me quedo con la parte de reading hasta \n
+	Me quedo con la parte de reading hasta \n.
 */
 {
 	char	*line;
@@ -88,7 +120,7 @@ char	*reset_reading(char *reading, int i)
 	//printf("position salto:%i\n", i);
 	printf("%p\n", reading);
 	if (ft_strlen(reading) <= i)
-		free(reading);
+		reading = NULL;
 	else
 	{
 		j = 0;
@@ -134,10 +166,15 @@ void	ft_free_alloc(char *s1, char *s2)
 
 char	*get_next_line(int fd)
 {
-	static char	*reading;
+	static char	stored[BUFFER_SIZE + 1];
+	char		*reading;
 	char		*line;
 	int			i;
 
+	reading = ft_calloc(BUFFER_SIZE + 1, 1);
+	if (stored)
+		copy_store(stored, 0, reading);
+	//copio stored desde 0 a reading
 	//printf("reading0: %s\n", reading);
 	if (fd < 0 || BUFFER_SIZE < 1 || fd > 1024)
 	{
@@ -157,29 +194,3 @@ char	*get_next_line(int fd)
 	//printf("reading2: %s\n", reading);
 	return (line);
 }
-
-/*
-void	leaks(void)
-{
-	system ("leaks a.out");
-}
-
-int	main(void)
-{
-	int		fd;
-	char	*s;
-
-	//atexit(leaks);
-	fd = open("41_with_nl", O_RDONLY);
-	s = get_next_line(fd);
-	printf("LINE1:%s", s);
-	free(s);
-	s = get_next_line(fd);
-	printf("LINE2:%s", s);
-	//free(s);
-	//s = get_next_line(fd);
-	//printf("LINE3:%s", s);
-	free(s);
-	close(fd);
-}
-*/
