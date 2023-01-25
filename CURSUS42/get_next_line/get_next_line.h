@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:35:15 by lucifern          #+#    #+#             */
-/*   Updated: 2023/01/25 11:10:48 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:25:18 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ char	*reset_reading(char *reading, int i);
 int		ft_position_char(char *s, char c);
 int		ft_strlen(char *str);
 
-void	ft_free_alloc(char *s1, char *s2);
 void	*ft_calloc(size_t count, size_t size);
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size);

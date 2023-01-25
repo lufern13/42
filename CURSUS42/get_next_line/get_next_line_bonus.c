@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2023/01/25 12:34:58 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:23:47 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ char	*read_line(int fd, char *reading)
 		rd = read(fd, new_read, BUFFER_SIZE);
 		if (rd < 1 && reading[0] == '\0')
 		{
-			ft_free_alloc(reading, new_read);
+			free(reading);
+			free(new_read);
 			return (NULL);
 		}
 		reading = ft_strjoin(reading, new_read);
@@ -51,7 +52,8 @@ char	*get_line(char *reading, int *i)
 	line = NULL;
 	if (!reading)
 	{
-		ft_free_alloc(reading, line);
+		free(reading);
+		free(line);
 		return (NULL);
 	}
 	pos = ft_position_char(reading, '\n');
@@ -84,7 +86,7 @@ char	*reset_reading(char *reading, int i)
 {
 	int		j;
 	char	*mem;
-	
+
 	mem = ft_calloc(1, ft_strlen(reading) - i + 1);
 	if (ft_strlen(reading) <= i)
 		free(reading);
@@ -103,24 +105,6 @@ char	*reset_reading(char *reading, int i)
 	return (mem);
 }
 
-void	ft_free_alloc(char *s1, char *s2)
-{
-	if (s1)
-	{
-		free(s1);
-		s1 = NULL;
-	}
-	else
-		free(s1);
-	if (s2)
-	{
-		free(s2);
-		s2 = NULL;
-	}
-	else
-		free(s2);
-}
-
 char	*get_next_line(int fd)
 {
 	static char	*reading;
@@ -129,7 +113,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE < 1 || fd > 1024)
 	{
-		ft_free_alloc(reading, 0);
+		free(reading);
 		return (NULL);
 	}
 	reading = read_line(fd, reading);
@@ -137,35 +121,10 @@ char	*get_next_line(int fd)
 	line = get_line(reading, &i);
 	if (!line)
 	{
-		ft_free_alloc(reading, line);
+		free(reading);
+		free(line);
 		return (NULL);
 	}
 	reading = reset_reading(reading, ft_position_char(reading, '\n'));
 	return (line);
 }
-
-/*
-void	leaks(void)
-{
-	system ("leaks a.out");
-}
-
-int	main(void)
-{
-	int		fd;
-	char	*s;
-
-	//atexit(leaks);
-	fd = open("41_with_nl", O_RDONLY);
-	s = get_next_line(fd);
-	printf("LINE1:%s", s);
-	free(s);
-	s = get_next_line(fd);
-	printf("LINE2:%s", s);
-	//free(s);
-	//s = get_next_line(fd);
-	//printf("LINE3:%s", s);
-	free(s);
-	close(fd);
-}
-*/

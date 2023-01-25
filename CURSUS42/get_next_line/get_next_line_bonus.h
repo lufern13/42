@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/25 16:35:15 by lucifern          #+#    #+#             */
-/*   Updated: 2023/01/25 11:10:48 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/01/25 13:25:28 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -32,7 +32,6 @@ char	*reset_reading(char *reading, int i);
 int		ft_position_char(char *s, char c);
 int		ft_strlen(char *str);
 
-void	ft_free_alloc(char *s1, char *s2);
 void	*ft_calloc(size_t count, size_t size);
 
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
