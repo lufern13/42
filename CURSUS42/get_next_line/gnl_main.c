@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:29:39 by lucifern          #+#    #+#             */
-/*   Updated: 2022/11/05 17:15:45 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:34:25 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,7 @@ int	main(void)
 {
 	int		fd;
 	char	*s;
-	//char	*str;
 
-	//str = malloc(10);
-	//str = "0123456789";
-	//printf("%s\n", reset_reading(str, 3));
 	fd = open("41_with_nl", O_RDONLY);
 	s = get_next_line(fd);
 	printf("LINE1:%s.\n", s);

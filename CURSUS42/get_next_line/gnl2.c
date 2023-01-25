@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 18:01:39 by lucifern          #+#    #+#             */
-/*   Updated: 2022/11/05 18:35:29 by lucifern         ###   ########.fr       */
+/*   Updated: 2022/11/09 13:47:50 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	copy_store(char *reading, int sl, char *stored)
 	return (stored);
 }
 
-char	*read_line(int fd, char *reading, char *stored)
+char	* read_line(int fd, char *reading, char *stored)
 /*
 	Compruebo que en reading no haya \n; si los hay devuelvo el reading a partir
 	del salto, si no los hay le voy anexando sucesivas lecturas hasta encontrar \n.
@@ -73,7 +73,7 @@ char	*read_line(int fd, char *reading, char *stored)
 	return (reading);
 }
 
-char	*get_line(char *reading, int *i)
+char	*get_line(char *reading, int *i, char *stored)
 /*
 	Me quedo con la parte de reading hasta \n.
 */
@@ -171,7 +171,7 @@ char	*get_next_line(int fd)
 	char		*line;
 	int			i;
 
-	reading = ft_calloc(BUFFER_SIZE + 1, 1);
+	reading = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (stored)
 		copy_store(stored, 0, reading);
 	//copio stored desde 0 a reading
@@ -181,9 +181,9 @@ char	*get_next_line(int fd)
 		ft_free_alloc(reading, 0);
 		return (NULL);
 	}
-	reading = read_line(fd, reading);
+	reading = read_line(fd, reading, stored);
 	i = 0;
-	line = get_line(reading, &i);
+	line = get_line(reading, &i, stored);
 	if (!line)
 	{
 		ft_free_alloc(reading, line);

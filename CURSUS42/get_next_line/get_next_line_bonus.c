@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2023/01/25 12:52:42 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/01/25 12:34:58 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ char	*reset_reading(char *reading, int i)
 {
 	int		j;
 	char	*mem;
-
+	
 	mem = ft_calloc(1, ft_strlen(reading) - i + 1);
 	if (ft_strlen(reading) <= i)
 		free(reading);
