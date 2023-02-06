@@ -17,6 +17,8 @@
 # include <stdio.h>
 # include <sys/types.h>
 # include <sys/uio.h>
+# include <stdint.h>
+# include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
@@ -29,8 +31,8 @@ char	*get_line(char *reading, int *i);
 char	*read_line(int fd, char *reading);
 char	*reset_reading(char *reading, int i);
 
-int		ft_position_char(char *s, char c);
-int		ft_strlen(char *str);
+int	ft_position_char(char *s, char c);
+int	ft_strlen(char *str);
 
 void	*ft_calloc(size_t count, size_t size);
 

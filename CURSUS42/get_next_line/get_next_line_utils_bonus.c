@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
@@ -97,9 +97,6 @@ char	*ft_strchr(char *s, int c)
 		un puntero a la posición de c o NULL
 */
 {
-	int	i;
-
-	i = 0;
 	while (*s && *s != (char)c)
 		s++;
 	if (*s == (char)c)

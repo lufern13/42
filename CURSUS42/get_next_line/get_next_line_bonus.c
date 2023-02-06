@@ -10,9 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
-#include <fcntl.h>
+#include "get_next_line_bonus.h"
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 char	*read_line(int fd, char *reading)
 /*
@@ -69,22 +77,12 @@ char	*get_line(char *reading, int *i)
 	return (line);
 }
 
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
 char	*reset_reading(char *reading, int i)
 /*
 	me quedo con todo lo que hay despues de \n en reading
 */
 {
-	int		j;
+	int	j;
 	char	*mem;
 
 	mem = ft_calloc(1, ft_strlen(reading) - i + 1);
@@ -107,24 +105,26 @@ char	*reset_reading(char *reading, int i)
 
 char	*get_next_line(int fd)
 {
-	static char	*reading;
+	static char	*reading[257];
 	char		*line;
-	int			i;
+	int		i;
 
 	if (fd < 0 || BUFFER_SIZE < 1 || fd > 1024)
 	{
-		free(reading);
+		free(reading[fd]);
 		return (NULL);
 	}
-	reading = read_line(fd, reading);
+	reading[fd] = read_line(fd, reading[fd]);
 	i = 0;
-	line = get_line(reading, &i);
-	if (!line)
+	line = get_line(reading[fd], &i);
+	if (!line[fd])
 	{
-		free(reading);
+		free(reading[fd]);
 		free(line);
 		return (NULL);
 	}
-	reading = reset_reading(reading, ft_position_char(reading, '\n'));
+	reading[fd] = reset_reading(reading[fd], ft_position_char(reading[fd], '\n'));
+	//ESCRIBIR LA LÍNEA ENCONTRADA
 	return (line);
 }
+

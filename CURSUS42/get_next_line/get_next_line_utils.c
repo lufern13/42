@@ -97,9 +97,6 @@ char	*ft_strchr(char *s, int c)
 		un puntero a la posición de c o NULL
 */
 {
-	int	i;
-
-	i = 0;
 	while (*s && *s != (char)c)
 		s++;
 	if (*s == (char)c)

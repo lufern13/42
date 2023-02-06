@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <sys/types.h>
 # include <sys/uio.h>
+# include <stdint.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 10
