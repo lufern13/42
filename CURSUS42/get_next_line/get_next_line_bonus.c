@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2023/01/25 13:23:47 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/02/07 13:55:19 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,24 +107,28 @@ char	*get_next_line(int fd)
 {
 	static char	*reading[257];
 	char		*line;
-	int		i;
+	int			i;
 
+	line = NULL;
 	if (fd < 0 || BUFFER_SIZE < 1 || fd > 1024)
 	{
-		free(reading[fd]);
+		printf("AAAAAAAAAAAAAAA%p\n", line);
 		return (NULL);
 	}
+	printf("AAbbbbbbbbbAAAAAA%p, %p\n", reading[fd], line);
 	reading[fd] = read_line(fd, reading[fd]);
 	i = 0;
+	printf("AAAccccccccccAAAA%p, %p\n", reading[fd], line);
 	line = get_line(reading[fd], &i);
-	if (!line[fd])
+	if (!line)
 	{
+		printf("AAAAddddddddAAA%p, %p\n", reading[fd], line);
 		free(reading[fd]);
 		free(line);
 		return (NULL);
 	}
-	reading[fd] = reset_reading(reading[fd], ft_position_char(reading[fd], '\n'));
-	//ESCRIBIR LA LÍNEA ENCONTRADA
+	i = ft_position_char(reading[fd], '\n');
+	reading[fd] = reset_reading(reading[fd], i);
 	return (line);
 }
 

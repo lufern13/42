@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   gnl_main.c                                         :+:      :+:    :+:   */
+/*   gnl_main_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:29:39 by lucifern          #+#    #+#             */
-/*   Updated: 2023/01/25 12:34:25 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/02/07 13:49:42 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,25 @@
 
 int	main(void)
 {
-	int	fd;
-	char	*s;
+	char	*line;
+	int		fd;
+	int		fd1;
 
-	fd = open("41_with_nl""text", O_RDONLY);
-	s = get_next_line(fd);
-	printf("LINE1:%s.\n", s);
-	free(s);
-	s = get_next_line(fd);
-	printf("LINE2:%s.\n", s);
-	free(s);
-	s = get_next_line(fd);
-	printf("LINE3:%s.\n", s);
-	free(s);
-	////s = get_next_line(fd);
-	////printf("LINE3:%s", s);
-	//free(s);
-	//system ("leaks a.out");
-	close(fd);
+	fd = open("text.txt", O_RDONLY);
+	line = get_next_line(fd);
+	printf("content %s\n", line);
+
+	fd1 = open("41_with_nl.txt", O_RDONLY);
+	line = get_next_line(fd1);
+	printf("content %s\n", line);
+	line = get_next_line(fd1);
+	printf("content %s\n", line);
+	line = get_next_line(fd1);
+	printf("content %s\n", line);
+	line = get_next_line(fd1);
+	printf("content %s\n", line);
+	line = get_next_line(fd);
+	printf("content %s\n", line);
+	line = get_next_line(fd1);
+	printf("content %s\n", line);
 }
