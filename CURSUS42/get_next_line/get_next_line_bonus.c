@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2023/02/09 14:12:51 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/02/14 14:05:34 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,6 @@ char	*get_next_line(int fd)
 	line = NULL;
 	if (fd < 0 || BUFFER_SIZE < 1 || read(fd, 0, 0) < 0)
 		return (NULL);
-	line = NULL;
 	reading[fd] = read_line(fd, &reading[fd]);
 	i = 0;
 	line = get_line(&reading[fd], &i);
