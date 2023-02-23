@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2023/02/14 14:08:45 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/02/23 14:58:44 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,8 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*
-void	leaks(void)
+
+/*void	leaks(void)
 {
 	system ("leaks a.out");
 }
@@ -137,7 +137,7 @@ int	main(void)
 	int		fd;
 	char	*s;
 
-	//atexit(leaks);
+	atexit(leaks);
 	fd = open("41_with_nl", O_RDONLY);
 	s = get_next_line(fd);
 	printf("LINE1:%s", s);

@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:30 by lucifern          #+#    #+#             */
-/*   Updated: 2023/02/14 11:29:09 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/02/23 16:46:15 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,12 @@ void	server(char *message)
 {
 	
 }
+
+void	client(int pid, char *message)
 /*
-unistd.h
-	int	sleep (segundos)
-		El proceso se suspende durante x segundos p hasta que reciba una señal
-		Devuelve 0 si ha terminado el tiempo y otro int si recibe una señal
-		y el sueño es interrumpido
-	int	usleep (microsegundos)
-		La función usleep () suspende la ejecución del hilo de llamada durante
-		microsegundos de segundos de uso o hasta que la señal se envía al hilo
-		que interrumpe la ejecución.
-		Devuelve 0 si Usleep ha regresado con éxito o -1 & errno si falló
+	El cliente debe comunicar la string pasada como parámetro al servidor.
+	Parámetros: PID del servidor y string a enviar.
 */
+{
+	
+}

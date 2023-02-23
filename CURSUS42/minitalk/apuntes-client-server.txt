@@ -1,41 +1,87 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    apuntes-client-server.txt                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/02/23 16:43:49 by lucifern          #+#    #+#              #
+#    Updated: 2023/02/23 16:43:49 by lucifern         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+unistd.h
+	SLEEP
+        int	sleep (segundos)
+
+		El proceso se suspende durante x segundos p hasta que reciba una señal
+		Devuelve 0 si ha terminado el tiempo y otro int si recibe una señal
+		y el sueño es interrumpido
+    
+    USLEEP
+	    int	usleep (microsegundos)
+
+		La función usleep () suspende la ejecución del hilo de llamada durante
+		microsegundos de segundos de uso o hasta que la señal se envía al hilo
+		que interrumpe la ejecución.
+		Devuelve 0 si Usleep ha regresado con éxito o -1 & errno si falló
+
 signal.h:
-    sighandler_t signal(int signum, sighandler_t handler);
+    SIGNAL
+        sighandler_t signal(int signum, sighandler_t handler);
+
         sets the disposition of the signal signum to handler, which is either
             SIG_IGN: then the signal is ignored
             SIG_DFL: then the default action associated with the signal occurs.
             or the address of a programmer_defined function
         Returns the previous value of the signal handler, or SIG_ERR on error.
     
-    int sigemptyset(sigset_t *set)
+    SIGEMPTYSET
+        int sigemptyset(sigset_t *set)
+
         Inicializa set sin ninguna señal.
         Devuelve 0 si ha tenido éxito y -1 si no.
     
-    int sigeaddset(sigset_y *set, int signum)
+    SIGEADDSET
+        int sigeaddset(sigset_y *set, int signum)
+
         Añade la señal signum al conjunto de señales set
 
-    int sigaction(int signum, const struct sigaction *act,
+    SIGACTION
+        int sigaction(int signum, const struct sigaction *act,
                     struct sifaction *restrict oldact)
         PARÁMETROS:
             signum: señal para la que se va a modificar la acción
-            act: Puntero a una estructura sigaction que describe la nueva acción para la señal signum.
+            act: Puntero a una estructura sigaction que describe la nueva acción
+                para la señal signum.
                 Si es NULL, no se modificará la acción actural
-            oldact: puntero a una estructura signaction que será rellenada con la antigua acción para la señal signum.
+            oldact: puntero a una estructura signaction que será rellenada con la
+                antigua acción para la señal signum.
                 Si es NULL, no se recuperará el calor previo.
         ESTRUCTURA SIGACTION:
-            sa_handler: describe el manejador de la señal, puede valer SIG_DFL, SIG_IGN o un puntero a una función.
-            sa_mask: campo de tipo sigset_t que describe el conjunto de señales que serán bloqueadas mientras el manejador de sa_handler
-                es ejecutado.
-            sa_flags: especifica varios flags, combinados mediante OR, que afecta a como se maneja la señal.
+            sa_handler: describe el manejador de la señal, puede valer SIG_DFL, 
+                SIG_IGN o un puntero a una función.
+            sa_mask: campo de tipo sigset_t que describe el conjunto de señales 
+                que serán bloqueadas mientras el manejador de sa_handler es 
+                ejecutado.
+            sa_flags: especifica varios flags, combinados mediante OR, que afecta
+                a como se maneja la señal.
                 Valores:
                     sa_nocldstop: solo con la señal sigchld
                     sa_restart: 
     
-    int kill(pid_t pid, int sig)
-        the kill() system call can be used to send any signal to any process group or process
+    KILL
+        int kill(pid_t pid, int sig)
+
+        the kill() system call can be used to send any signal to any process group
+            or process
         if pid>0, sig is sent to the process pid
-        if pid=0, sig is sent to every process in the process group of the calling process
-        if pid=-1, sig is sent to every process for which the calling process has permission to send signals
-        if pid<-1, sig is sent, but error checking is still performed; this can be used to check for the existence of a process ID or process group ID.
+        if pid=0, sig is sent to every process in the process group of the calling
+            process
+        if pid=-1, sig is sent to every process for which the calling process has 
+            permission to send signals
+        if pid<-1, sig is sent, but error checking is still performed; this can be
+            used to check for the existence of a process ID or process group ID.
         Devuelve 0 si éxito y -1 si error
     
 
