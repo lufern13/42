@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2023/02/23 14:58:44 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/03/03 15:29:03 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ char	*read_line(int fd, char *reading)
 			free(new_read);
 			return (NULL);
 		}
+		if (rd == -1)
+			free(reading);
 		reading = ft_strjoin(reading, new_read);
 	}
 	return (reading);
 }
 
-char	*get_line(char *reading, int *i)
+char	*get_the_line(char *reading, int i)
 /*
 	me quedo con la parte de reading hasta \n
 */
@@ -57,15 +59,14 @@ char	*get_line(char *reading, int *i)
 		return (NULL);
 	}
 	pos = ft_position_char(reading, '\n');
-	line = ft_calloc(pos + 1, sizeof(char));
-	line[pos + 1] = '\0';
-	while (reading[*i] && reading[*i] != '\n')
+	line = ft_calloc(pos + 2, sizeof(char));
+	while (reading[i] && reading[i] != '\n')
 	{
-		line[*i] = reading[*i];
-		*i += 1;
+		line[i] = reading[i];
+		i += 1;
 	}
-	if (reading[*i] == '\n')
-		line[*i] = reading[*i];
+	if (reading[i] == '\n')
+		line[i] = reading[i];
 	return (line);
 }
 
@@ -115,7 +116,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	reading = read_line(fd, reading);
 	i = 0;
-	line = get_line(reading, &i);
+	line = get_the_line(reading, i);
 	if (!line)
 	{
 		free(reading);
@@ -126,8 +127,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-
-/*void	leaks(void)
+void	leaks(void)
 {
 	system ("leaks a.out");
 }
@@ -135,10 +135,16 @@ char	*get_next_line(int fd)
 int	main(void)
 {
 	int		fd;
-	char	*s;
+	char	*s = "";
 
-	atexit(leaks);
+	//atexit(leaks);
 	fd = open("41_with_nl", O_RDONLY);
+	// while (s)
+	// {
+	// 	s = get_next_line(fd);
+	// 	printf("%s", s);
+	// 	free(s);
+	// }
 	s = get_next_line(fd);
 	printf("LINE1:%s", s);
 	free(s);
@@ -150,4 +156,3 @@ int	main(void)
 	free(s);
 	close(fd);
 }
-*/

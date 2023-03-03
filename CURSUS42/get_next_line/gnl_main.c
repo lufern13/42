@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/01 11:29:39 by lucifern          #+#    #+#             */
-/*   Updated: 2023/02/14 14:07:55 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/03/02 16:52:05 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	main(void)
 
 	fd = open("41_with_nl", O_RDONLY);
 	s = get_next_line(fd);
-	printf("LINE1:%s.\n", s);
+	printf("LINE1:%s\n", s);
 	free(s);
 	s = get_next_line(fd);
-	printf("LINE2:%s.\n", s);
+	printf("LINE2:%s\n", s);
 	free(s);
 	//s = get_next_line(fd);
 	//free(s);
@@ -36,7 +36,7 @@ int	main(void)
 	//free(s);
 	close(fd);
 	s = get_next_line(fd);
-	printf("LINE6:%s.\n", s);
+	printf("LINE6:%s\n", s);
 	free(s);
 	system ("leaks a.out");
 }

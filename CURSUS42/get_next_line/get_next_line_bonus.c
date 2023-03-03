@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2023/02/14 14:05:34 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/03/03 13:58:17 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,14 @@ char	*read_line(int fd, char **reading)
 			free(new_read);
 			return (NULL);
 		}
+		if (rd == -1)
+			free(reading);
 		*reading = ft_strjoin(*reading, new_read);
 	}
 	return (*reading);
 }
 
-char	*get_line(char **reading, int *i)
+char	*get_the_line(char **reading, int i)
 /*
 	me quedo con la parte de reading hasta \n
 */
@@ -66,16 +68,15 @@ char	*get_line(char **reading, int *i)
 		return (NULL);
 	}
 	pos = ft_position_char(*reading, '\n');
-	line = ft_calloc(pos + 1, sizeof(char));
-	line[pos + 1] = '\0';
+	line = ft_calloc(pos + 2, sizeof(char));
 	temp = *reading;
-	while (temp[*i] && temp[*i] != '\n')
+	while (temp[i] && temp[i] != '\n')
 	{
-		line[*i] = temp[*i];
-		*i += 1;
+		line[i] = temp[i];
+		i += 1;
 	}
-	if (temp[*i] == '\n')
-		line[*i] = temp[*i];
+	if (temp[i] == '\n')
+		line[i] = temp[i];
 	return (line);
 }
 
@@ -119,7 +120,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	reading[fd] = read_line(fd, &reading[fd]);
 	i = 0;
-	line = get_line(&reading[fd], &i);
+	line = get_the_line(&reading[fd], i);
 	if (!line)
 	{
 		free(reading[fd]);
