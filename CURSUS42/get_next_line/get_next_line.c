@@ -6,13 +6,11 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2023/03/05 12:17:52 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/03/06 19:44:19 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
-#include <fcntl.h>
 
 char	*read_line(int fd, char *reading)
 /*

@@ -5,3 +5,5 @@ Crear mi primera máquina en VirtualBox bajo instrucciones específicas. Crear p
 
 BONUS:
 	Configurar más particiones, un sitio WordPress funcional y un servicio adicional.
+
+SCORE: 

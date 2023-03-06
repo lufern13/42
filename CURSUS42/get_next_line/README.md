@@ -10,3 +10,5 @@ Nuevos conceptos: variables estáticas.
 
 BONUS: 
 	Desarrollar get_next_line() con una sola variable estática y que sea capaz de gestionar múltiples fd a la vez.
+
+SCORE: 125/125
