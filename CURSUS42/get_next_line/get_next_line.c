@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2023/03/03 15:29:03 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/03/05 12:17:52 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*read_line(int fd, char *reading)
 			return (NULL);
 		}
 		if (rd == -1)
-			free(reading);
+			reading = NULL;
 		reading = ft_strjoin(reading, new_read);
 	}
 	return (reading);
@@ -126,7 +126,7 @@ char	*get_next_line(int fd)
 	reading = reset_reading(reading, ft_position_char(reading, '\n'));
 	return (line);
 }
-
+/*
 void	leaks(void)
 {
 	system ("leaks a.out");
@@ -139,20 +139,21 @@ int	main(void)
 
 	//atexit(leaks);
 	fd = open("41_with_nl", O_RDONLY);
-	// while (s)
-	// {
-	// 	s = get_next_line(fd);
-	// 	printf("%s", s);
-	// 	free(s);
-	// }
-	s = get_next_line(fd);
-	printf("LINE1:%s", s);
-	free(s);
-	s = get_next_line(fd);
-	printf("LINE2:%s", s);
-	//free(s);
-	//s = get_next_line(fd);
-	//printf("LINE3:%s", s);
-	free(s);
+	while (s)
+	{
+		s = get_next_line(fd);
+		printf("%s", s);
+		free(s);
+	}
+	// s = get_next_line(fd);
+	// printf("LINE1:%s", s);
+	// free(s);
+	// s = get_next_line(fd);
+	// printf("LINE2:%s", s);
+	// //free(s);
+	// //s = get_next_line(fd);
+	// //printf("LINE3:%s", s);
+	// free(s);
 	close(fd);
 }
+*/

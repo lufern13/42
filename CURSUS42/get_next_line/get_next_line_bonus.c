@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 15:16:28 by lucifern          #+#    #+#             */
-/*   Updated: 2023/03/03 13:58:17 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/03/05 12:20:21 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*read_line(int fd, char **reading)
 			return (NULL);
 		}
 		if (rd == -1)
-			free(reading);
+			reading = NULL;
 		*reading = ft_strjoin(*reading, new_read);
 	}
 	return (*reading);
