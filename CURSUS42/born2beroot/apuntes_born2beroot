@@ -1,0 +1,89 @@
+#### APUNTES BORN2BEROOT ####
+
+Ver particiones:	lsblk
+Abrir archivo sudoers:	sudo visudo
+Instalar:	sudo apt intall _
+
+
+USUARIOS:
+	Ver usuarios locales:	cut -d: -f1 /etc/passwd
+
+GRUPO:
+	Añadir user a group:	sudo usermod -aG group user
+	Ver miembros:	getent group nombre_grupo
+	Crear grupo:	sudo groupadd nombre_grupo
+
+SSH:
+	Configurar puerto:	sudo vim /etc/ssh/sshd_config
+	Comprobar SSH Server Status:	sudo service ssh status  ó  sudo systemctl status SSH
+	Reiniciar servicio:	sudo service ssh restart  ó  sudo systemctl restart ssh
+
+UFW:
+	Activar:	sudo ufw enable
+	Comprobar estado:	sudo ufw status numbered
+	Permitir conexiones ssh:	sudo afw allow ssh  ó  sudo afw allow 4242
+
+PASSWORD-POLICY:
+	Instalar libreria Password Quality Checking:	sudo apt-get install libpam-pwquality
+	Modificar requisitos:	sudo vim /etc/pam.d/common-password
+	Comprobar que las reglas están funcionando:	sudo chage -l user
+
+
+#### EVALUATION QUESTIONS ####
+
+# Por qué elegiste Debian?
+Es mucho más fácil de instalar y configurar.
+
+# Diferencias entre Debian y CentOS?
+Debian es mucho más fácil de actualizar que CentOS, además de soportar más librerías. Además tiene más opciones de personalización, CentOS ofrece más características para la empresa y un gran soporte para el software de empresa.
+
+# Qué es una máquina virtual?
+Una máquina virtual un software en lugar de un ordenador físico para ejecutar programas y aplicaciones. Cada máquina virtual tiene su propio sistema operativo y sus propias funciones, por lo que puedes tener más de una máquina virtual por ordenador. Además, es muy útil para probar aplicaciones en un entorno separado y seguro. Funciona usando software simulando hardware virtual.
+
+# Cuál es la diferencia entre aptitude y APT (Advanced Packaging Tool)?
+	Aptitude es un administrador de paquetes de alto nivel, mientras que APT es de más bajo nivel y puede ser usado por otros administradores de paquetes de mayor nivel.
+	Aptitude es más inteligente y eliminará automáticamente paquetes no usados y sugerirá la instalación de paquetes relacionados.
+	Apt solo hará lo que le pidas explícitamente en la línea de comandos.
+
+# What is AppArmor?
+Es un sistema de seguridad de Linux, permite al sistema admin restringir las acciones que los procesos pueden hacer. Está incluido por defecto en Debian.
+
+# Reglas de contraseña
+Para gestionar las reglas de las contraseñas usamos la librería password quality checking. Hay dos archivos: el archivo common-password, que establece las reglas del tipo mayúsculas y minúsculas, caracteres duplicados, etc, y el archivo login.defs, que almacena las reglas de caducidad de contraseñas(30 days etc).
+	Sudo vim /etc/login.defs
+	Sudo vim /etc/pam.d/common-password
+
+# Qué es LVM?
+Logical Volume Manager – allows us to easily manipulate the partitions or logical volume on a storage device.
+
+# UFW (Uncomplicated Firewall)
+UFW is a interface to modify the firewall of the device without compromising security. You use it to configure which ports to allow connections to and which ports to close. This is useful in conjunction with SSH, can set a specific port for it to work with.
+
+# What is SSH?
+SSH or Secure Shell is an authentication mechanism between a client and a host. It uses encryption techniques so that all communication between clients and hosts is done in encrypted form. User on Mac or Linux can use SSH the terminal to work on their server via SSH.
+
+# What is Cron?
+Cron or cron job is a command line utility to schedule commands or scripts to happen at specific intervals or a specific time each day. Useful if you want to set your server to restart at a specific time each day.
+	cd /usr/local/bin – to show monitoring.sh
+	sudo crontab -u root -e – to edit the cron job
+	change script to */1 * * * * sleep 30s && script path – to run it every 30 seconds, delete the line to stop the job from running.
+
+# Evaluation Commands for UFW, Group, Host, lsblk and SSH
+	sudo ufw status
+	sudo systemctl status ssh
+	getent group sudo
+	getent group user42
+	sudo adduser new username
+	sudo groupadd groupname
+	sudo usermod -aG groupname username
+	sudo chage -l username - check password expire rules
+	hostnamectl
+	hostnamectl set-hostname new_hostname - to change the current hostname
+	Restart your Virtual Machine.
+	sudo nano /etc/hosts - change current hostname to new hostname
+	lsblk to display the partitions
+	dpkg -l | grep sudo – to show that sudo is installed
+	sudo ufw status numbered
+	sudo ufw allow port-id
+	sudo ufw delete rule number
+	ssh your_user_id@127.0.0.1 -p 4242 - do this in terminal to show that SSH to port 4242 is working
