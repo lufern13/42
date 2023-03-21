@@ -14,7 +14,7 @@ unistd.h
 	SLEEP
         int	sleep (segundos)
 
-		El proceso se suspende durante x segundos p hasta que reciba una señal
+		El proceso se suspende durante x segundos o hasta que reciba una señal
 		Devuelve 0 si ha terminado el tiempo y otro int si recibe una señal
 		y el sueño es interrumpido
     
