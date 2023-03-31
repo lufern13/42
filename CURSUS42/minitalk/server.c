@@ -6,10 +6,11 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:30 by lucifern          #+#    #+#             */
-/*   Updated: 2023/03/28 17:55:59 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:02:42 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <libft/libft.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <signal.h>

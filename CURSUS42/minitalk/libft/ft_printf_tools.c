@@ -6,11 +6,11 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 16:48:19 by lucifern          #+#    #+#             */
-/*   Updated: 2023/03/29 16:51:49 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/03/31 21:02:02 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_putptr(void *p)
 {
@@ -64,7 +64,7 @@ int	ft_putnbr_base(int n, int b)
 	return (sol);
 }
 
-static int	put_long_int(unsigned long int n, int len, char *base)
+static int	put_long_int_unsig(unsigned long int n, int len, char *base)
 {
 	char	cifra;
 	int		sol;
@@ -77,8 +77,8 @@ static int	put_long_int(unsigned long int n, int len, char *base)
 	}
 	else
 	{
-		sol += put_long_int(n / len, len, base);
-		sol += put_long_int(n % len, len, base);
+		sol += put_long_int_unsig(n / len, len, base);
+		sol += put_long_int_unsig(n % len, len, base);
 	}
 	return (sol);
 }
@@ -98,6 +98,6 @@ int	ft_putnbr_unsig(unsigned long int n, int b)
 		b = 16;
 		base = "0123456789ABCDEF";
 	}
-	sol = put_long_int(n, b, base);
+	sol = put_long_int_unsig(n, b, base);
 	return (sol);
 }
