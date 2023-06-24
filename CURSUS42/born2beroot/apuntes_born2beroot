@@ -2,8 +2,12 @@
 
 Ver particiones:	lsblk
 Abrir archivo sudoers:	sudo visudo
+	# User privilege specification
+		user ALL= en este se indica que la regla se aplica a cualquier anfitrión (o host).
+		user ALL=(ALL: "user" podrá usar comandos de cualquier usuario.
+		user ALL=(ALL:ALL) si el anterior "ALL" permitía usar comandos de usuarios, éste lo hará de grupos.
+		user ALL=(ALL:ALL) ALL: las reglas se aplican a todos los comandos.
 Instalar:	sudo apt intall _
-
 
 USUARIOS:
 	Ver usuarios locales:	cut -d: -f1 /etc/passwd
@@ -29,7 +33,7 @@ PASSWORD-POLICY:
 	Comprobar que las reglas están funcionando:	sudo chage -l user
 
 
-#### EVALUATION QUESTIONS ####
+#### EVALUACIÓN ####
 
 # Por qué elegiste Debian?
 Es mucho más fácil de instalar y configurar.
@@ -38,7 +42,7 @@ Es mucho más fácil de instalar y configurar.
 Debian es mucho más fácil de actualizar que CentOS, además de soportar más librerías. Además tiene más opciones de personalización, CentOS ofrece más características para la empresa y un gran soporte para el software de empresa.
 
 # Qué es una máquina virtual?
-Una máquina virtual un software en lugar de un ordenador físico para ejecutar programas y aplicaciones. Cada máquina virtual tiene su propio sistema operativo y sus propias funciones, por lo que puedes tener más de una máquina virtual por ordenador. Además, es muy útil para probar aplicaciones en un entorno separado y seguro. Funciona usando software simulando hardware virtual.
+Una máquina virtual es un software en lugar de un ordenador físico para ejecutar programas y aplicaciones. Cada máquina virtual tiene su propio sistema operativo y sus propias funciones, por lo que puedes tener más de una máquina virtual por ordenador. Además, es muy útil para probar aplicaciones en un entorno separado y seguro. Funciona usando software simulando hardware virtual.
 
 # Cuál es la diferencia entre aptitude y APT (Advanced Packaging Tool)?
 	Aptitude es un administrador de paquetes de alto nivel, mientras que APT es de más bajo nivel y puede ser usado por otros administradores de paquetes de mayor nivel.
@@ -57,13 +61,13 @@ Para gestionar las reglas de las contraseñas usamos la librería password quali
 Logical Volume Manager – allows us to easily manipulate the partitions or logical volume on a storage device.
 
 # UFW (Uncomplicated Firewall)
-UFW is a interface to modify the firewall of the device without compromising security. You use it to configure which ports to allow connections to and which ports to close. This is useful in conjunction with SSH, can set a specific port for it to work with.
+“cortafuegos sin complicaciones” que permite definir políticas de seguridad de la red, la creación de limitaciones o permisos para acceder a diferentes servicios o aplicaciones.
 
 # What is SSH?
-SSH or Secure Shell is an authentication mechanism between a client and a host. It uses encryption techniques so that all communication between clients and hosts is done in encrypted form. User on Mac or Linux can use SSH the terminal to work on their server via SSH.
+SSH or Secure Shell es un protocolo de red destinado principalmente a la conexión con máquinas a las que accedemos por línea de comandos. Utiliza técnicas de encriptación para que la comunicación sea segura.
 
 # What is Cron?
-Cron or cron job is a command line utility to schedule commands or scripts to happen at specific intervals or a specific time each day. Useful if you want to set your server to restart at a specific time each day.
+Es un archivo de texto donde se listan todas las tareas que deben ejecutarse y el momento en el que deben hacerlo.
 	cd /usr/local/bin – to show monitoring.sh
 	sudo crontab -u root -e – to edit the cron job
 	change script to */1 * * * * sleep 30s && script path – to run it every 30 seconds, delete the line to stop the job from running.

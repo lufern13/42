@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:27 by lucifern          #+#    #+#             */
-/*   Updated: 2023/03/31 21:02:30 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:12:51 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,36 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-void	send_signal(int pid, int sig)
+void	send_char(int pid, int c)
+/*
+	Se envía al PID el carácter c pasándolo a binario y usando las señales
+	SIGUR2 (1) y SIGUR (0).
+	Parámetros: PID del servidor y char a enviar.
+*/
 {
-	if (sig == 1)
-	{
-		printf("called: 1\n");
-		kill(pid, SIGUSR2);
-	}
-	else
-	{
-		printf("called: 0\n");
-		kill(pid, SIGUSR1);
-	}
-}
+	unsigned char	b;
+	int				i;
 
+	i = 1;
+	b = 128;
+	while (i < 9)
+	{
+		if (b & c)
+		{
+			kill(pid, SIGUSR2);
+			printf("1");
+		}
+		else
+		{
+			kill(pid, SIGUSR1);
+			printf("0");
+		}
+		b /= 2;
+		i++;
+	}
+	return (0);
+}
+/*
 void	char_to_bin(int pid, char c)
 {
 	int	n;
@@ -47,7 +63,7 @@ void	char_to_bin(int pid, char c)
 	}
 	return (0);
 }
-
+*/
 int	main(int argc, char **argv)
 /*
 	El cliente debe comunicar la string pasada como parámetro al servidor.
