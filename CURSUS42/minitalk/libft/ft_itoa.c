@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 16:30:48 by lucifern          #+#    #+#             */
-/*   Updated: 2023/02/07 13:21:25 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:31:42 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ static int	num_numbers(int n)
 }
 
 char	*ft_itoa(int n)
+/*
+	Utilizando malloc(3), genera una string que represente el valor entero reci-
+	bido como argumento.
+	Los números negativos también se gestionan.
+*/
 {
 	char		*str;
 	int			len;

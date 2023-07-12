@@ -6,64 +6,38 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:27 by lucifern          #+#    #+#             */
-/*   Updated: 2023/06/24 21:12:51 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:53:33 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft/libft.h>
-#include <stdio.h>
-#include <signal.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "minitalk.h"
 
 void	send_char(int pid, int c)
 /*
 	Se envía al PID el carácter c pasándolo a binario y usando las señales
-	SIGUR2 (1) y SIGUR (0).
+	SIGUR2 (1) y SIGUR1 (0).
 	Parámetros: PID del servidor y char a enviar.
 */
 {
-	unsigned char	b;
-	int				i;
+	int	i;
 
-	i = 1;
-	b = 128;
-	while (i < 9)
+	i = 7;
+	while (i >= 0)
 	{
-		if (b & c)
+		if (c & (1 << i))
 		{
-			kill(pid, SIGUSR2);
 			printf("1");
+			kill(pid, SIGUSR2);
 		}
 		else
 		{
-			kill(pid, SIGUSR1);
 			printf("0");
+			kill(pid, SIGUSR1);
 		}
-		b /= 2;
-		i++;
+		i--;
 	}
-	return (0);
 }
-/*
-void	char_to_bin(int pid, char c)
-{
-	int	n;
-	int	b;
 
-	n = c;
-	printf("c: %c is n: %d\n", c, n);
-	while (n != 0)
-	{
-		b = n % 2;
-		printf("b: %i\n", b);
-		send_signal(pid, b);
-		n = n / 2;
-		usleep(1);
-	}
-	return (0);
-}
-*/
 int	main(int argc, char **argv)
 /*
 	El cliente debe comunicar la string pasada como parámetro al servidor.
@@ -79,8 +53,9 @@ int	main(int argc, char **argv)
 	while (argv[2][i])
 	{
 		c = argv[2][i];
-		char_to_bin(pid, c);
+		send_char(pid, c);
 		i++;
 	}
+	i = argc;
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 20:28:14 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/09 13:51:10 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:35:28 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,9 @@ static void	put_long_int(long int n, int fd)
 }
 
 void	ft_putnbr_fd(int n, int fd)
+/*
+	Envía el número ’n’ al file descriptor dado.
+*/
 {
 	long int	number;
 

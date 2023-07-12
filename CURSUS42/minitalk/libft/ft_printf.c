@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/20 17:09:50 by lucifern          #+#    #+#             */
-/*   Updated: 2023/03/29 16:54:29 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:17:51 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	process(char c, va_list arg, int sol)
 {
 	if (c == 'c')
-		sol += ft_putchr_fd(va_arg(arg, int), 1);
+		sol += ft_putchar_fd(va_arg(arg, int), 1);
 	else if (c == 's')
 		sol += ft_putstr_fd(va_arg(arg, char *), 1);
 	else if (c == 'p')
@@ -29,9 +29,9 @@ static int	process(char c, va_list arg, int sol)
 	else if (c == 'X')
 		sol += ft_putnbr_unsig(va_arg(arg, unsigned int), 17);
 	else if (c == '%')
-		sol += ft_putchr('%');
+		sol += ft_putchar_fd('%', 1);
 	else
-		sol += ft_putchr(c);
+		sol += ft_putchar_fd(c, 1);
 	return (sol);
 }
 
@@ -55,7 +55,7 @@ int	ft_printf(char const *s, ...)
 				sol = process(s[i], arg, sol);
 		}
 		else
-			sol += ft_putchr(s[i]);
+			sol += ft_putchar_fd(s[i], 1);
 		i++;
 	}
 	va_end(arg);

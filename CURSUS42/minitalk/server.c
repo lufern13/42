@@ -6,30 +6,58 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:30 by lucifern          #+#    #+#             */
-/*   Updated: 2023/03/31 21:02:42 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/12 18:59:03 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft/libft.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <signal.h>
-#include <stdlib.h>
+#include "minitalk.h"
 
-char	*g_num;
+char	*bits = NULL;
 
-void	handler_sigusr1(void)
+int	print_char(char *ascii_bin)
+/*
+	Devuelve por pantalla el carácter ascii recibido en binario
+*/
 {
-	*g_num = '1';
-	g_num++;
-	printf("NUM1: %s\n", g_num - 1);
+	int	i;
+	int	c;
+
+	c = 0;
+	i = 0;
+	while (i < 8)
+	{
+		c = c * 2 + ascii_bin[i] - 48;
+		i++;
+	}
+	ft_putchar_fd(c, 1);
+	return (0);
 }
 
-void	handler_sigusr2(void)
+void	bits_append(char *bits, char c)
+/*
+	Añade al final de bits el carácter c.
+*/
 {
-	*g_num = '0';
-	g_num++;
-	printf("NUM0: %s\n", g_num - 1);
+	int	i;
+
+	i = 0;
+	while (bits[i] == '0' || bits[i] == '1')
+		i++;
+	bits[i] = c;
+}
+
+void	message_reception(int signal)
+{
+	if ((int)ft_strlen(bits) == 8)
+	{
+		print_char(bits);
+		free(bits);
+		bits = NULL;
+	}
+	if (signal == SIGUSR1)
+		bits_append(bits, '0');
+	else
+		bits_append(bits, '1');
 }
 
 int	main(void)
@@ -39,15 +67,27 @@ int	main(void)
 	Parámetros: string que mostrar.
 */
 {
-	signal(SIGUSR1, handler_sigusr1);
-	signal(SIGUSR2, handler_sigusr2);
-	printf("pid: %i\n", getpid());
-	g_num = malloc(8);
+	char	*bits;
+
+	ft_putstr_fd("PID: ", 1);
+	ft_putnbr_fd((int)getpid(), 1);
+	ft_putchar_fd('\n', 1);
+	bits = ft_calloc(9, 1);
 	while (1)
 	{
-		printf("HOLA: %s\n", g_num - 7);
+		signal(SIGUSR1, message_reception);
+		signal(SIGUSR2, message_reception);
 		sleep(1);
 	}
+/* 	bits_append(bits, '0');
+	bits_append(bits, '0');
+	bits_append(bits, '1');
+	bits_append(bits, '1');
+	bits_append(bits, '0');
+	bits_append(bits, '0');
+	bits_append(bits, '0');
+	bits_append(bits, '1');
+	print_char(bits); */
 	return (0);
 }
 

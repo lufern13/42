@@ -6,13 +6,18 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 11:52:57 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/09 19:55:46 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:30:15 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
+/*
+	Elimina todos los caracteres de la string ’set’ desde el principio y desde
+	el final de ’s1’, hasta encontrar un caracter no perteneciente a ’set’. La 
+	string resultante se devuelve con una reserva de malloc(3).
+*/
 {
 	int		sal;
 	int		start;

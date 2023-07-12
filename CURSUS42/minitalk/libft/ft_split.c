@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/30 13:48:51 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/19 16:13:12 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:30:53 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 #include <string.h>
 
 static int	num_words(const char *s, char c)
+/*
+	Reserva (utilizando malloc(3)) un array de strings resultante de separar la
+	string ’s’ en substrings utilizando el caracter ’c’ como delimitador. El 
+	array debe terminar con un puntero NULL.
+*/
 {
 	int	i;
 	int	num;

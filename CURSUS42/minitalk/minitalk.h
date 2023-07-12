@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/31 20:18:43 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/12 17:34:50 by lucifern         ###   ########.fr       */
+/*   Created: 2023/07/12 18:38:26 by lucifern          #+#    #+#             */
+/*   Updated: 2023/07/12 18:59:46 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef MINITALK_H
+# define MINITALK_H
 
-int	ft_putstr_fd(char *s, int fd)
-/*
-	Envía la string ’s’ al file descriptor especificado.
-*/
-{
-	int	sol;
+# include "libft/libft.h"
+# include <stdio.h>
+# include <unistd.h>
+# include <signal.h>
+# include <stdlib.h>
 
-	sol = 0;
-	if (!s)
-		return (write(1, "(null)", 6));
-	while (*s)
-	{
-		sol += ft_putchar_fd(*s, fd);
-		s++;
-	}
-	return (sol);
-}
+#endif

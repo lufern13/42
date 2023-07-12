@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 14:36:42 by lucifern          #+#    #+#             */
-/*   Updated: 2022/04/09 13:52:10 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:32:46 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ char	ft_f(unsigned int i, char c)
 }
 */
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+/*
+	A cada carácter de la string ’s’, aplica la función ’f’ dando como paráme-
+	tros el índice de cada carácter dentro de ’s’ y el propio carácter. Genera
+	una nueva string con el resultado del uso sucesivo de ’f’.
+*/
 {
 	char	*str;
 	size_t	size;

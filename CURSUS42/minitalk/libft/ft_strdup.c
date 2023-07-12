@@ -6,13 +6,17 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 18:44:58 by lucifern          #+#    #+#             */
-/*   Updated: 2022/03/28 18:59:37 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:36:04 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 char	*ft_strdup(const char *s1)
+/*
+	Toma una cadena de caracteres existente como argumento y devuelve un puntero
+	a una nueva cadena que es una copia exacta de la cadena original.
+*/
 {
 	int		len;
 	int		i;

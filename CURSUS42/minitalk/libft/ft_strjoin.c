@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 19:29:49 by lucifern          #+#    #+#             */
-/*   Updated: 2022/08/24 13:51:48 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/12 17:29:27 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 /*
-	Une las cadenas s1 y s2 en una nueva cadena join.
-	Devuelve:
-		join
+	Reserva (con malloc(3)) y devuelve una nueva string, formada por la concate-
+	nación de ’s1’ y ’s2’.
 */
 {
 	size_t	len;
