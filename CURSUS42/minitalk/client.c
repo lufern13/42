@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:27 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/12 18:53:33 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/13 14:24:49 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,20 @@ void	send_char(int pid, int c)
 	int	i;
 
 	i = 7;
+	printf("CLIENT SENDING CHAR\n");
 	while (i >= 0)
 	{
 		if (c & (1 << i))
 		{
-			printf("1");
+			printf("C1\n");
 			kill(pid, SIGUSR2);
+			sleep(1);
 		}
 		else
 		{
-			printf("0");
+			printf("C0\n");
 			kill(pid, SIGUSR1);
+			sleep(1);
 		}
 		i--;
 	}

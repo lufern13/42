@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   client1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/21 13:37:06 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/13 14:37:50 by lucifern         ###   ########.fr       */
+/*   Created: 2023/07/13 13:20:17 by lucifern          #+#    #+#             */
+/*   Updated: 2023/07/13 14:15:40 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minitalk.h"
 
-size_t	ft_strlen(const char *str)
+int	main(int argc, char **argv)
 {
-	size_t	i;
+	int	pid;
 
-	if (!str)
-		return (0);
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-/*
-int	main(void)
-{
-	printf("%zu", ft_strlen("hola que"));
+	pid = atoi(argv[1]);
+	if (*argv[2] == '1')
+		kill(pid, SIGUSR2);
+	else if (*argv[2] == '0')
+		kill(pid, SIGUSR1);
+	else
+		printf("MAL");
 	return (0);
 }
-*/
