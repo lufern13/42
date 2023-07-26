@@ -6,38 +6,48 @@
 #    By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 13:42:48 by lucifern          #+#    #+#              #
-#    Updated: 2023/03/29 16:39:28 by lucifern         ###   ########.fr        #
+#    Updated: 2023/07/26 18:55:59 by lucifern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = client server
+NAME = 
+CLIENT = client
+SERVER = server
+
+SERVER_SRC = server.c
+CLIENT_SRC = client.c
+SERVER_OBJ = $(SERVER_SRC:.c=.o)
+CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
 
 CC = gcc
-
 FLAGS = -Wall -Wextra -Werror
 
-LIBFT = libft/ft_toupper.c libft/ft_tolower.c libft/ft_strchr.c\
-libft/ft_strrchr.c libft/ft_strncmp.c libft/ft_memchr.c libft/ft_memcmp.c\
-libft/ft_strnstr.c libft/ft_atoi.c libft/ft_isalpha.c libft/ft_isdigit.c\
-libft/ft_isalnum.c libft/ft_isascii.c libft/ft_isprint.c libft/ft_strlen.c\
-libft/ft_memset.c libft/ft_bzero.c libft/ft_memcpy.c libft/ft_memmove.c\
-libft/ft_strlcpy.c libft/ft_strlcat.c libft/ft_calloc.c libft/ft_strdup.c\
-libft/ft_substr.c libft/ft_strjoin.c libft/ft_strtrim.c libft/ft_split.c\
-libft/ft_itoa.c libft/ft_putchar_fd.c libft/ft_putstr_fd.c libft/ft_putendl_fd.c\
-libft/ft_putnbr_fd.c libft/ft_strmapi.c libft/ft_striteri.c\
-libft/ft_lstnew_bonus.c libft/ft_lstadd_front_bonus.c libft/ft_lstsize_bonus.c\
-libft/ft_lstlast_bonus.c libft/ft_lstadd_back_bonus.c libft/ft_lstdelone_bonus.c\
-libft/ft_lstclear_bonus.c libft/ft_lstiter_bonus.c libft/ft_lstmap_bonus.c
+LIBFT = ./libft/libft.a
+LIBFT_PATH = ./libft
+INC =-I. -I$(LIBFT_DIR) #para que el compilador pueda encontrar tanto los 
+# archivos fuente locales como los archivos fuente en el directorio libft/.
 
-all: server client
+all: $(CLIENT) $(SERVER)
 
-client: client.c
-	$(CC) $(FLAGS) $(LIBFT) client.c -o client
+$(LIBFT):
+	make -C ./libft
 
-server: server.c
-	$(CC) $(FLAGS) $(LIBFT) server.c -o server
+$(CLIENT): $(LIBFT) $(CLIENT_OBJ)
+	$(CC) $(FLAGS) $(LIBFT) $(CLIENT_OBJ) -o client
 
-.PHONY: clean
+$(SERVER): $(LIBFT) $(SERVER_OBJ)
+	$(CC) $(FLAGS) $(LIBFT) $(SERVER_OBJ) -o server
 
 clean:
-	$(RM) $(NAME)
+	make clean -C ./libft
+	@rm -rf $(SERVER_OBJ)
+	@rm -rf $(CLIENT_OBJ)
+
+fclean: clean
+	make fclean -C ./libft
+	@rm -rf $(CLIENT)
+	@rm -rf $(SERVER)
+
+re: fclean all
+
+.PHONY: all clean fclean re

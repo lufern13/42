@@ -6,21 +6,23 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:30 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/25 12:14:04 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:48:53 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-char	*bits = NULL;
+char	*g_bits = NULL;
+char	*g_message = NULL;
 
 int	print_char(char *ascii_bin)
 /*
 	Devuelve por pantalla el carácter ascii recibido en binario
 */
 {
-	int	i;
-	int	c;
+	int		i;
+	int		c;
+	char	*chr;
 
 	c = 0;
 	i = 0;
@@ -29,11 +31,19 @@ int	print_char(char *ascii_bin)
 		c = c * 2 + ascii_bin[i] - 48;
 		i++;
 	}
-	ft_putchar_fd(c, 1);
+	chr = ft_calloc(2, 1);
+	chr[0] = c;
+	ft_putstr_fd(chr, 1);
+	ft_putchar_fd('\n', 1);
+	g_message = ft_strjoin(g_message, chr);
+	// añadir c a g_message y, cuando c = \0, se imprime
+	if (c == '\0')
+		ft_putstr_fd(g_message, 1);
+	printf("MESSAGE: %s\n", g_message);
 	return (0);
 }
 
-void	bits_append(char *bits, char c)
+void	bits_append(char *g_bits, char c)
 /*
 	Añade al final de bits el carácter c.
 */
@@ -41,36 +51,36 @@ void	bits_append(char *bits, char c)
 	int	i;
 
 	i = 0;
-	if (!bits)
+	if (!g_bits)
 	{
-		bits[0] = c;
+		g_bits[0] = c;
 		i = 10;
 	}
 	if (i == 0)
 	{
-		while (bits[i] == '0' || bits[i] == '1')
+		while (g_bits[i] == '0' || g_bits[i] == '1')
 			i++;
-		bits[i] = c;
+		g_bits[i] = c;
 	}
 }
 
 void	message_reception(int signal)
 {
-	if (!bits)
+	if (!g_bits)
 	{
-		bits = ft_calloc(9, 1);
-		if (!bits)
-			free(bits);
+		g_bits = ft_calloc(9, 1);
+		if (!g_bits)
+			free(g_bits);
 	}
 	if (signal == SIGUSR1)
-		bits_append(bits, '0');
+		bits_append(g_bits, '0');
 	else
-		bits_append(bits, '1');
-	if ((int)ft_strlen(bits) == 8)
+		bits_append(g_bits, '1');
+	if ((int)ft_strlen(g_bits) == 8)
 	{
-		print_char(bits);
-		free(bits);
-		bits = NULL;
+		print_char(g_bits);
+		free(g_bits);
+		g_bits = NULL;
 	}
 }
 

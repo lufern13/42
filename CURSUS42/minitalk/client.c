@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:27 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/25 13:22:31 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:11:16 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 	int	c;
 	int	pid;
 
-	pid = atoi(argv[1]);
+	pid = ft_atoi(argv[1]);
 	j = 2;
 	while (j < argc)
 	{
@@ -64,5 +64,6 @@ int	main(int argc, char **argv)
 			send_char(pid, ' ');
 		j++;
 	}
+	send_char(pid, '\0');
 	return (0);
 }

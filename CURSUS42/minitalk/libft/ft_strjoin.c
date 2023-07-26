@@ -6,13 +6,13 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 19:29:49 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/12 17:29:27 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/26 18:53:38 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 /*
 	Reserva (con malloc(3)) y devuelve una nueva string, formada por la concate-
 	nación de ’s1’ y ’s2’.
@@ -21,14 +21,16 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	size_t	len;
 	char	*join;
 
-	if (!s1 || !s2)
-		return (NULL);
 	len = ft_strlen(s1) + ft_strlen(s2);
+	ft_putnbr_fd(len, 1);
 	join = ft_calloc(len + 1, sizeof(char));
 	if (!join)
 		return (NULL);
-	ft_strlcat(join, s1, ft_strlen(s1) + 1);
+	ft_strlcat(join, s1, ft_strlen(s1) + 1); // seg fault aquí REVISAR
+	ft_putstr_fd("AAAAAAAAAAa", 1);
 	ft_strlcat(join, s2, len + 1);
+	free(s1);
+	free(s2);
 	return (join);
 }
 /*

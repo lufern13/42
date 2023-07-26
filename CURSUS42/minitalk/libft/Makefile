@@ -6,7 +6,7 @@
 #    By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/26 17:54:24 by lucifern          #+#    #+#              #
-#    Updated: 2022/04/19 18:46:04 by lucifern         ###   ########.fr        #
+#    Updated: 2023/07/26 13:55:55 by lucifern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,13 +37,13 @@ all: $(NAME)
 
 .PHONY: all clean fclean re
 
-fclean: clean
-	@rm -rf $(NAME)
-
 clean:
 	@rm -rf $(OBJECTS) $(OBJBONUS)
 
-re: fclean all
+fclean: clean
+	@rm -rf $(NAME)
+
+re: fclean clean all
 
 B = . # para que no se ejecute varias veces (relink)
 
