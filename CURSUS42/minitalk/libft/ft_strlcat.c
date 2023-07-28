@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/21 15:05:24 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/26 18:52:35 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:10:12 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,17 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	if (size <= destlen)
 		return (size + srclen);
 	j = 0;
-	while (src[j] && (j < size - destlen - 1))
+	if (!src)
+		return (destlen + srclen);
+	else
 	{
-		dest[destlen + j] = src[j];
-		j++;
+		while (src[j] && (j < size - destlen - 1))
+		{
+			dest[destlen + j] = src[j];
+			j++;
+		}
+		dest[destlen + j] = '\0';
 	}
-	dest[destlen + j] = '\0';
 	return (destlen + srclen);
 }
 /*

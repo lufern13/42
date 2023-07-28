@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:27 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/26 18:11:16 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:56:09 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ void	send_char(int pid, int c)
 		if (c & (1 << i))
 		{
 			kill(pid, SIGUSR2);
-			usleep(2500);
+			usleep(300);
 		}
 		else
 		{
 			kill(pid, SIGUSR1);
-			usleep(2500);
+			usleep(300);
 		}
 		i--;
 	}

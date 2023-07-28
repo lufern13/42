@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 19:29:49 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/26 18:53:38 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/28 14:23:31 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,19 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*join;
 
 	len = ft_strlen(s1) + ft_strlen(s2);
-	ft_putnbr_fd(len, 1);
 	join = ft_calloc(len + 1, sizeof(char));
 	if (!join)
 		return (NULL);
-	ft_strlcat(join, s1, ft_strlen(s1) + 1); // seg fault aquí REVISAR
-	ft_putstr_fd("AAAAAAAAAAa", 1);
+	ft_strlcat(join, s1, ft_strlen(s1) + 1);
 	ft_strlcat(join, s2, len + 1);
 	free(s1);
 	free(s2);
 	return (join);
 }
+// s1 = (null) len = 0
+// s2 = "h" len = 1
+// join = "\0\0"
+// ft_strlcat("\0\0", (null), 1);
 /*
 int	main(void)
 {

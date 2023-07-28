@@ -6,23 +6,23 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:30 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/26 18:48:53 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:11:04 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
 char	*g_bits = NULL;
-char	*g_message = NULL;
 
-int	print_char(char *ascii_bin)
+int	char_to_message(char *ascii_bin)
 /*
 	Devuelve por pantalla el carácter ascii recibido en binario
 */
 {
-	int		i;
-	int		c;
-	char	*chr;
+	int			i;
+	int			c;
+	char		*chr;
+	static char	*g_message;
 
 	c = 0;
 	i = 0;
@@ -33,13 +33,16 @@ int	print_char(char *ascii_bin)
 	}
 	chr = ft_calloc(2, 1);
 	chr[0] = c;
-	ft_putstr_fd(chr, 1);
-	ft_putchar_fd('\n', 1);
+	if (!g_message)
+		g_message = NULL;
 	g_message = ft_strjoin(g_message, chr);
-	// añadir c a g_message y, cuando c = \0, se imprime
 	if (c == '\0')
+	{
 		ft_putstr_fd(g_message, 1);
-	printf("MESSAGE: %s\n", g_message);
+		ft_putchar_fd('\n', 1);
+		free(g_message);
+		g_message = NULL;
+	}
 	return (0);
 }
 
@@ -48,16 +51,13 @@ void	bits_append(char *g_bits, char c)
 	Añade al final de bits el carácter c.
 */
 {
-	int	i;
+	int			i;
 
-	i = 0;
 	if (!g_bits)
-	{
 		g_bits[0] = c;
-		i = 10;
-	}
-	if (i == 0)
+	else
 	{
+		i = 0;
 		while (g_bits[i] == '0' || g_bits[i] == '1')
 			i++;
 		g_bits[i] = c;
@@ -78,7 +78,7 @@ void	message_reception(int signal)
 		bits_append(g_bits, '1');
 	if ((int)ft_strlen(g_bits) == 8)
 	{
-		print_char(g_bits);
+		char_to_message(g_bits);
 		free(g_bits);
 		g_bits = NULL;
 	}
@@ -98,7 +98,7 @@ int	main(void)
 	{
 		signal(SIGUSR1, message_reception);
 		signal(SIGUSR2, message_reception);
-		usleep(2500);
+		//usleep(2500);
 	}
 	return (0);
 }
