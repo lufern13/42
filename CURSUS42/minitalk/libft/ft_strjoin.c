@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 19:29:49 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/28 14:23:31 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/29 15:05:16 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	len;
 	char	*join;
 
+	if (!s1)
+		s1 = NULL;
 	len = ft_strlen(s1) + ft_strlen(s2);
 	join = ft_calloc(len + 1, sizeof(char));
 	if (!join)

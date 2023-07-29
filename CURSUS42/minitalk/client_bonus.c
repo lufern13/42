@@ -1,16 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:27 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/29 12:52:12 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/07/29 15:03:23 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
+
+int	received;
 
 void	send_char(int pid, int c)
 /*
@@ -28,9 +30,15 @@ void	send_char(int pid, int c)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		usleep(500);
+		sleep(1);
 		i--;
 	}
+}
+
+void	received_reception(int signal)
+{
+	if (signal == SIGUSR1)
+		received = 1;
 }
 
 int	main(int argc, char **argv)
@@ -43,6 +51,7 @@ int	main(int argc, char **argv)
 	int	j;
 	int	pid;
 
+	received = 0;
 	pid = ft_atoi(argv[1]);
 	j = 2;
 	while (j < argc)
@@ -58,5 +67,9 @@ int	main(int argc, char **argv)
 		j++;
 	}
 	send_char(pid, '\0');
+	while (!received)
+		signal(SIGUSR1, received_reception);
+	if (received)
+		ft_putstr_fd("Message received.\n", 1);
 	return (0);
 }
