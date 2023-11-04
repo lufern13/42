@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:30 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/29 15:05:22 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/11/04 21:32:23 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@ void	show_message(char *message, int client_pid)
 {
 	ft_putstr_fd(message, 1);
 	ft_putchar_fd('\n', 1);
-	kill(client_pid, SIGUSR1);
+	sleep(1);
+	kill(client_pid, SIGUSR2);
+	sleep(1);
 }
 
 int	char_to_message(char *ascii_bin, int client_pid)
@@ -45,7 +47,7 @@ int	char_to_message(char *ascii_bin, int client_pid)
 	{
 		ft_putstr_fd(message, 1);
 		ft_putchar_fd('\n', 1);
-		kill(client_pid, SIGUSR1);
+		i = kill(client_pid, SIGUSR2);
 		free(message);
 		message = NULL;
 	}

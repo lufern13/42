@@ -6,13 +6,12 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:27 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/29 15:03:23 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/11/04 21:41:50 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+revisar que está con solo 3 argumentos 
 #include "minitalk.h"
-
-int	received;
 
 void	send_char(int pid, int c)
 /*
@@ -22,23 +21,33 @@ void	send_char(int pid, int c)
 */
 {
 	int	i;
+	int	j;
 
 	i = 7;
 	while (i >= 0)
 	{
 		if (c & (1 << i))
-			kill(pid, SIGUSR2);
+			j = kill(pid, SIGUSR2);
 		else
-			kill(pid, SIGUSR1);
-		sleep(1);
+			j = kill(pid, SIGUSR1);
+		usleep(300);
 		i--;
+		if (j != 0)
+		{
+			ft_putstr_fd("Signal error.\n", 1);
+			exit(1);
+		}
 	}
 }
 
-void	received_reception(int signal)
+void	received_reception(int signal, siginfo_t *info, void *context)
 {
-	if (signal == SIGUSR1)
-		received = 1;
+	(void)info;
+	if (signal == SIGUSR2)
+	{
+		ft_putstr_fd("Server has received the message.\n", 1);
+	}
+	context = NULL;
 }
 
 int	main(int argc, char **argv)
@@ -47,29 +56,60 @@ int	main(int argc, char **argv)
 	Parámetros: PID del servidor y string a enviar.
 */
 {
-	int	i;
-	int	j;
-	int	pid;
+	int					i;
+	int					pid;
+	struct sigaction	sa;
 
-	received = 0;
-	pid = ft_atoi(argv[1]);
-	j = 2;
-	while (j < argc)
+	if (argc != 3)
+		ft_putstr_fd("Wrong number of arguments\n", 1);
+	else
 	{
+		sa.sa_sigaction = received_reception;
+		sa.sa_flags = SA_SIGINFO;
+		sigemptyset(&sa.sa_mask);
+		sigaction(SIGUSR2, &sa, NULL);
+		pid = ft_atoi(argv[1]);
 		i = 0;
-		while (argv[j][i])
+		while (argv[2][i])
 		{
-			send_char(pid, argv[j][i]);
+			send_char(pid, argv[2][i]);
 			i++;
 		}
-		if (j + 1 < argc)
-			send_char(pid, ' ');
-		j++;
+		send_char(pid, '\0');
 	}
-	send_char(pid, '\0');
-	while (!received)
-		signal(SIGUSR1, received_reception);
-	if (received)
-		ft_putstr_fd("Message received.\n", 1);
 	return (0);
 }
+
+
+
+
+//int	main(int argc, char **argv)
+///*
+//	El cliente debe comunicar la string pasada como parámetro al servidor.
+//	Parámetros: PID del servidor y string a enviar.
+//*/
+//{
+//	int	i;
+//	int	pid;
+//
+//	if (argc != 3)
+//		ft_putstr_fd("Wrong number of arguments\n", 1);
+//	else
+//	{
+//		g_received = 0;
+//		pid = ft_atoi(argv[1]);
+//		i = 0;
+//		while (argv[2][i])
+//		{
+//			send_char(pid, argv[2][i]);
+//			i++;
+//		}
+//		ft_putnbr_fd((int)getpid(), 1);
+//		send_char(pid, '\0');
+//		ft_putchar_fd('B', 1);
+//	}
+//	sleep(1);
+//	signal(SIGUSR2, message_reception);
+//	pause();
+//	return (0);
+//}

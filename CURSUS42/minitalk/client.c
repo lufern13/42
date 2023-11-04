@@ -6,7 +6,7 @@
 /*   By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 13:33:27 by lucifern          #+#    #+#             */
-/*   Updated: 2023/07/29 12:52:12 by lucifern         ###   ########.fr       */
+/*   Updated: 2023/11/04 21:42:04 by lucifern         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	send_char(int pid, int c)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		usleep(500);
+		usleep(300);
 		i--;
 	}
 }
@@ -38,25 +38,23 @@ int	main(int argc, char **argv)
 	El cliente debe comunicar la string pasada como parámetro al servidor.
 	Parámetros: PID del servidor y string a enviar.
 */
-{
+{ revisar que está con solo 3 argumentos 
+
 	int	i;
-	int	j;
 	int	pid;
 
-	pid = ft_atoi(argv[1]);
-	j = 2;
-	while (j < argc)
+	if (argc != 3)
+		ft_putstr_fd("Wrong number of arguments\n", 1);
+	else
 	{
+		pid = ft_atoi(argv[1]);
 		i = 0;
-		while (argv[j][i])
+		while (argv[2][i])
 		{
-			send_char(pid, argv[j][i]);
+			send_char(pid, argv[2][i]);
 			i++;
 		}
-		if (j + 1 < argc)
-			send_char(pid, ' ');
-		j++;
+		send_char(pid, '\0');
 	}
-	send_char(pid, '\0');
 	return (0);
 }

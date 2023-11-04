@@ -6,7 +6,7 @@
 #    By: lucifern <lucifern@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/13 13:42:48 by lucifern          #+#    #+#              #
-#    Updated: 2023/07/29 15:15:24 by lucifern         ###   ########.fr        #
+#    Updated: 2023/11/04 20:09:43 by lucifern         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CLIENT_BONUS = client_bonus
 SERVER_BONUS = server_bonus
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror
 
 SERVER_SRC = server.c
 CLIENT_SRC = client.c
@@ -40,16 +40,18 @@ $(LIBFT):
 	@make -C ./libft
 
 $(CLIENT): $(CLIENT_OBJ) $(LIBFT)
-	@$(CC) $(FLAGS) $(CLIENT_OBJ) $(LIBFT) -o client
+	@$(CC) $(CFLAGS) $(CLIENT_OBJ) $(LIBFT) -o client
 
 $(SERVER): $(SERVER_OBJ) $(LIBFT)
-	@$(CC) $(FLAGS) $(SERVER_OBJ) $(LIBFT) -o server
+	@$(CC) $(CFLAGS) $(SERVER_OBJ) $(LIBFT) -o server
+
+bonus: $(CLIENT_BONUS) $(SERVER_BONUS)
 
 $(CLIENT_BONUS): $(CLIENT_BONUS_OBJ) $(LIBFT)
-	@$(CC) $(FLAGS) $(CLIENT_BONUS_OBJ) $(LIBFT) -o client_bonus
+	@$(CC) $(CFLAGS) $(CLIENT_BONUS_OBJ) $(LIBFT) -o client_bonus
 
 $(SERVER_BONUS): $(SERVER_BONUS_OBJ) $(LIBFT)
-	@$(CC) $(FLAGS) $(SERVER_BONUS_OBJ) $(LIBFT) -o server_bonus
+	@$(CC) $(CFLAGS) $(SERVER_BONUS_OBJ) $(LIBFT) -o server_bonus
 
 clean:
 	@make clean -C ./libft
